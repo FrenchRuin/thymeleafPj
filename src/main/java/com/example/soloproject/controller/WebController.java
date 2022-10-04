@@ -1,5 +1,9 @@
 package com.example.soloproject.controller;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,11 +14,20 @@ public class WebController {
 
     @GetMapping("basic")
     public String alert(Model model) {
-        model.addAttribute("Name", "이름");
+
+        Member member = new Member("toxic023@naver.com", "이재찬", 26);
+
+        model.addAttribute("member", member);
         return "thymeleaf";
     }
 
+    @Data
+    @AllArgsConstructor
+    public static class Member{
+        private String email;
+        private String name;
+        private Integer age;
 
-
+    }
 
 }

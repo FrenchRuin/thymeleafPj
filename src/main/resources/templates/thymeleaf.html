@@ -4,12 +4,31 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Main page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 
 <body>
-<h1 th:text="${Name}"></h1>
-<h2>[[${Name}]]</h2>
+<button id="testBtn" type="button">테스트 버튼</button>
+
 </body>
+
+<script th:inline="javascript">
+    let member = [[${member}]];
+
+    console.log(member);
+
+    $(document).ready(function () {
+        function whoami() {
+            console.log("okokook");
+        }
+
+        $('#testBtn').click(function () {
+            whoami();
+        });
+    });
+
+
+</script>
 
 
 </html>
