@@ -18,7 +18,7 @@ public class WebController {
         Member member = new Member("toxic023@naver.com", "이재찬", 26);
 
         model.addAttribute("member", member);
-        return "thymeleaf";
+        return "basic";
     }
 
     @Data
