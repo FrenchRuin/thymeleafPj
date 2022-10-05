@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <title>Dashboard - SB Admin</title>
+    <link rel="shortcut icon" th:href="@{/img/thymleaf.png}" type="image/x-icon">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     <script th:href="@{/js/bootstrap.min.js}"></script>
 </head>
@@ -20,23 +21,38 @@
             <span class="visually-hidden">Loading...</span>
         </div>
     </div>
-    <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-        <label for="floatingInput">Email address</label>
-    </div>
-    <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-        <label for="floatingPassword">Password</label>
-    </div>
+    <form method="post" >
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name">
+        </div>
+        <div class="mb-3">
+            <label for="age" class="form-label">Age</label>
+            <input type="text" class="form-control" id="age">
+        </div>
+        <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <input type="text" class="form-control" id="address">
+        </div>
+        <button type="submit" class="btn btn-primary">submit</button>
+    </form>
     <div class="d-flex justify-content-evenly m-4">
-        <button type="button" class="btn btn-primary">Test1</button>
+        <button type="button" class="btn btn-primary" th:onclick="|javascript : callTest();|">Test1</button>
         <button type="button" class="btn btn-primary">Test2</button>
         <button type="button" class="btn btn-primary">Test3</button>
     </div>
-
 </main>
 
 <th:block th:replace="fragment/footer :: footerFragment">
 </th:block>
+
+
+<script type="text/javascript">
+    function callTest() {
+        console.log("Test Ok");
+    }
+</script>
+
+
 </body>
 </html>
