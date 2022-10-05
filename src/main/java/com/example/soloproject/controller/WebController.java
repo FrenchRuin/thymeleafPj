@@ -27,7 +27,6 @@ public class WebController {
         private String email;
         private String name;
         private Integer age;
-
     }
 
 }
