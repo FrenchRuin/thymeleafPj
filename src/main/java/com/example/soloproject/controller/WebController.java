@@ -13,6 +13,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Slf4j
 public class WebController {
 
+    @RequestMapping(value = "test",method = RequestMethod.GET)
+    public String test(Model model) {
+        model.addAttribute("webForm", new WebDto());
+        log.info("okokoko");
+        return "index";
+    }
 
 
 
