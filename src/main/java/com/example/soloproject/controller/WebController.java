@@ -1,8 +1,11 @@
 package com.example.soloproject.controller;
 
 
+import com.example.soloproject.dto.LoginInfoDto;
 import com.example.soloproject.dto.WebDto;
+import com.example.soloproject.service.WebService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,31 +18,40 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 public class WebController {
 
-    @RequestMapping(value = "test", method = RequestMethod.GET)
-    public String test(Model model) {
-        model.addAttribute("webForm", new WebDto());
-        log.info("okokoko");
-        return "index";
-    }
+    @Autowired
+    WebService webService;
 
-    @RequestMapping(value = "test2", method = RequestMethod.GET)
+
+//    @RequestMapping(value = "test", method = RequestMethod.GET)
+//    public String test(Model model) {
+//        model.addAttribute("webForm", new WebDto());
+//        log.info("okokoko");
+//        return "index";
+//    }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String test2(Model model, WebDto webDto) {
-        webDto.setAddress("ddddd");
-        webDto.setName("ddddd");
         return "index";
     }
 
-    @RequestMapping(value = "test3", method = RequestMethod.POST)
+    @RequestMapping(value = "/test3", method = RequestMethod.POST)
     public String test3(HttpServletRequest request, Model model, WebDto webDto) {
         model.addAttribute("webDto", new WebDto());
-        log.info(webDto.getName());
-        log.info(webDto.getAddress());
-        return "redirect:/test2";
+
+        webService.printIn(webDto);
+        return "redirect:/";
     }
 
-    @RequestMapping(value = "test4", method = RequestMethod.GET)
-    public String test4(Model model, WebDto webDto) {
-        WebDto webDto1 = new WebDto();
-        return "index";
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login(Model model, LoginInfoDto loginInfoDto) {
+        return "login";
+    }
+
+    @RequestMapping(value = "/saveLogin", method = RequestMethod.POST)
+    public String saveLogin(HttpServletRequest request, Model model, LoginInfoDto loginInfoDto) {
+
+        model.addAttribute("loginInfoDto", new LoginInfoDto());
+
+        return webService.printLogin(loginInfoDto);
     }
 }
