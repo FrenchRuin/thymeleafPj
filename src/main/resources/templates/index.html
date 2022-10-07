@@ -22,28 +22,23 @@
         </div>
     </div>
     <form th:action="@{/test3}" th:object="${webDto}" method="post">
-    <div class="mb-3">
-        <label for="name" class="form-label">Name</label>
-        <input type="text" class="form-control" id="name" th:field="*{name}">
-    </div>
-    <div class="mb-3">
-        <label for="age" class="form-label">Age</label>
-        <input type="text" class="form-control" id="age" th:field="*{age}">
-    </div>
-    <div class="mb-3">
-        <label for="address" class="form-label">Address</label>
-        <input type="text" class="form-control" id="address"  th:field="*{address}">
-    </div>
-        <button type="submit">asdasd</button>
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" th:field="*{name}">
+        </div>
+        <div class="mb-3">
+            <label for="age" class="form-label">Age</label>
+            <input type="text" class="form-control" id="age" th:field="*{age}">
+        </div>
+        <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <input type="text" class="form-control" id="address" th:field="*{address}">
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-outline-danger">테스트</button>
+        </div>
     </form>
-    <a th:href="@{/test}"> ㅇㅇㅇ</a>
-    <button type="button" class="btn btn-primary" th:onclick="|location.href='/test'|">dddddd</button>
 
-    <div class="d-flex justify-content-evenly m-4">
-        <button type="button" class="btn btn-primary" th:onclick="|javascript : callTest();|">Test1</button>
-        <button type="button" class="btn btn-primary">Test2</button>
-        <button type="button" class="btn btn-primary">Test3</button>
-    </div>
 </main>
 
 <th:block th:replace="fragment/footer :: footerFragment">
