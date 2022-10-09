@@ -22,14 +22,6 @@ public class WebController {
     @Autowired
     WebService webService;
 
-
-//    @RequestMapping(value = "test", method = RequestMethod.GET)
-//    public String test(Model model) {
-//        model.addAttribute("webForm", new WebDto());
-//        log.info("okokoko");
-//        return "index";
-//    }
-
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String test2(Model model, WebDto webDto) {
         return "index";
