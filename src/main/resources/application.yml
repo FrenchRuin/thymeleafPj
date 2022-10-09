@@ -15,4 +15,4 @@ spring:
       driver-class-name: org.h2.Driver
       username: sa
       password:
-      jdbc-url: jdbc:h2:~/test
+      jdbc-url: jdbc:h2:~/User

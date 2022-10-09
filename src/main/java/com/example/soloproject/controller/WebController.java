@@ -3,6 +3,7 @@ package com.example.soloproject.controller;
 
 import com.example.soloproject.dto.LoginInfoDto;
 import com.example.soloproject.dto.WebDto;
+import com.example.soloproject.service.UserService;
 import com.example.soloproject.service.WebService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class WebController {
 
     @Autowired
     WebService webService;
+
+    @Autowired
+    UserService userService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String test2(Model model, WebDto webDto) {
@@ -52,4 +56,7 @@ public class WebController {
     public String board() {
         return "board";
     }
+
+
+    
 }

@@ -1,5 +1,6 @@
 package com.example.soloproject.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -22,9 +23,12 @@ public class User {
     @GeneratedValue
     private Long id;
 
-    private String name;
-
+    @Column
     private String userId;
 
+    @Column
+    private String name;
+
+    @Column
     private String address;
 }
