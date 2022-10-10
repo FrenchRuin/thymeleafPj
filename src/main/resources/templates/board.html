@@ -18,23 +18,24 @@
 <main>
 
     <h1 class="mt-5 text-center m-auto">게시판 Board</h1>
-    <form method="post">
+    <form method="post" th:action="@{/addBoard}" th:object="${user}">
         <div class="mb-3 w-25 m-auto">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name">
+            <label for="userId" class="form-label">Id</label>
+            <input type="text" class="form-control" id="userId" th:field="*{userId}">
         </div>
         <div class="mb-3 w-25 m-auto">
-            <label for="age" class="form-label">Age</label>
-            <input type="text" class="form-control" id="age">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" th:field="*{name}">
         </div>
         <div class="mb-3 w-25 m-auto">
             <label for="address" class="form-label">Address</label>
-            <input type="text" class="form-control" id="address">
+            <input type="text" class="form-control" id="address" th:field="*{address}">
         </div>
         <div class="text-center">
-            <button type="submit" class="btn btn-outline-danger">테스트</button>
+            <button type="submit" class="btn btn-outline-danger">등록</button>
         </div>
     </form>
+
     <table class="table table-dark w-75 text-center m-auto mt-5">
         <thead>
         <tr>
@@ -45,11 +46,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+        <tr th:each="user : ${users}">
+            <th scope="row" th:text="${user.id}">1</th>
+            <td th:text="${user.userId}" >Mark</td>
+            <td  th:text="${user.name}">Otto</td>
+            <td  th:text="${user.address}">@mdo</td>
         </tr>
         </tbody>
     </table>

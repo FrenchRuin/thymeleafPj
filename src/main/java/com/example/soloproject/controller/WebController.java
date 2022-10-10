@@ -52,10 +52,7 @@ public class WebController {
         return webService.printLogin(loginInfoDto);
     }
 
-    @RequestMapping(value = "/board", method = RequestMethod.GET)
-    public String board() {
-        return "board";
-    }
+
 
 
     
