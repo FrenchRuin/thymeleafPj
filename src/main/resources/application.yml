@@ -7,12 +7,23 @@ spring:
     prefix: classpath:/templates/
     suffix: .html
 
-  h2:
-    console:
-      enabled: true
   datasource:
     hikari:
       driver-class-name: org.h2.Driver
       username: sa
+      jdbc-url: jdbc:h2:mem:USER
       password:
-      jdbc-url: jdbc:h2:~/User
+
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true
+
+  h2:
+    console:
+      enabled: true
