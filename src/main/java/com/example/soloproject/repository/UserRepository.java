@@ -1,9 +1,9 @@
 package com.example.soloproject.repository;
 
-import com.example.soloproject.entity.User;
+import com.example.soloproject.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
 
 }

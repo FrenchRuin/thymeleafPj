@@ -3,7 +3,6 @@ package com.example.soloproject.service;
 import com.example.soloproject.dto.LoginInfoDto;
 import com.example.soloproject.dto.WebDto;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service

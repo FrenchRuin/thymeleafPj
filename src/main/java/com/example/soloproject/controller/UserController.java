@@ -1,7 +1,8 @@
 package com.example.soloproject.controller;
 
 
-import com.example.soloproject.entity.User;
+import com.example.soloproject.dto.UserDto;
+import com.example.soloproject.entity.UserEntity;
 import com.example.soloproject.repository.UserRepository;
 import com.example.soloproject.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -22,24 +23,25 @@ public class UserController {
     UserRepository userRepository;
 
     @RequestMapping(value = "/board", method = RequestMethod.GET)
-    public String board(Model model, User user) {
+    public String board(Model model, UserEntity userEntity) {
         model.addAttribute("users", userService.findAllUser());
         return "board";
     }
 
     @RequestMapping(value = "/addBoard", method = RequestMethod.POST)
-    public String addBoard(Model model, User user) {
-        model.addAttribute("user", new User());
+    public String addBoard(Model model, UserDto userDto) {
 
-        userService.createUser(user);
+        model.addAttribute("user", new UserDto());
+
+        userService.createUser(userDto);
 
         return "redirect:/board";
     }
 
-    @RequestMapping(value = "/deleteBoard", method = RequestMethod.DELETE)
-    public String deleteBoard(Model model, User user) {
+    @RequestMapping(value = "/deleteBoard")
+    public String deleteBoard() {
 
-        userRepository.deleteById(user.getId());
+       userService.deleteUser();
 
         return "redirect:/board";
     }

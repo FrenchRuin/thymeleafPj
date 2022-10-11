@@ -1,6 +1,4 @@
-package com.example.soloproject.entity;
-
-import javax.persistence.*;
+package com.example.soloproject.dto;
 
 
 import lombok.AllArgsConstructor;
@@ -12,20 +10,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity
-@Table(name = "userTest")
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserDto {
     private Long id;
-
-    @Column
     private String userId;
-
-    @Column
     private String name;
-
-    @Column
     private String address;
 }
