@@ -23,7 +23,7 @@ class UserEntityServiceTest {
 
     @DisplayName("1. createUser ")
     @Test
-    void test_1(){
+    void test_1() {
 
         /* User service & User Repository Relationship check*/
         UserEntity userEntity = new UserEntity();
@@ -37,21 +37,29 @@ class UserEntityServiceTest {
 
     @DisplayName("2. modelMapperTest")
     @Test
-    void test_2(){
-       /* model mapper (dto to entity) connection */
-       UserDto userDto = new UserDto();
-       userDto.setUserId("toxic023");
-       userDto.setAddress("toxic023");
-       userDto.setName("toxic023");
-       userDto.setId(1L);
+    void test_2() {
+        /* model mapper (dto to entity) connection */
+        UserDto userDto = new UserDto();
+        userDto.setUserId("toxic023");
+        userDto.setAddress("toxic023");
+        userDto.setName("toxic023");
+        userDto.setId(1L);
 
         ModelMapper modelMapper = new ModelMapper();
         UserEntity entity = modelMapper.map(userDto, UserEntity.class);
 
-        log.info("userId : {}",entity.getUserId());
-        log.info("address : {}",entity.getAddress());
-        log.info("name : {}",entity.getName());
-        log.info("id : {}",entity.getId().toString());
+        log.info("userId : {}", entity.getUserId());
+        log.info("address : {}", entity.getAddress());
+        log.info("name : {}", entity.getName());
+        log.info("id : {}", entity.getId().toString());
+    }
+
+    @DisplayName("3. NullPoint")
+    @Test
+    void test_4() {
+
+        log.info(userService.findAllUser().toString()
+);
     }
 
 

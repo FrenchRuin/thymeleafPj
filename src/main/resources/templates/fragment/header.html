@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
-
     <script th:href="@{/js/bootstrap.min.js}"></script>
     <title>Main page</title>
 </head>
@@ -13,7 +12,7 @@
 <div th:fragment="headerFragment">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" th:href="@{/}">TestPage</a>
+            <a class="navbar-brand" th:href="@{https://velog.io/@french_ruin}" target="_blank">Dev_Lee</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,7 +24,7 @@
                         <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/board}">Board</a>
+                        <a class="nav-link" th:href="@{/user}">User</a>
                     </li>
                 </ul>
                 <form class="d-flex">

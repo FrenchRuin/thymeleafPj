@@ -27,3 +27,9 @@ spring:
   h2:
     console:
       enabled: true
+
+  naver:
+    X-Naver-Client-Id: 0QJhbYw2IhHIs78ihpxV
+    X-Naver-Client-Secret: LSz5CRvuF4
+
+

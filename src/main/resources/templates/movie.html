@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <title>Movie</title>
+    <link rel="shortcut icon" th:href="@{/img/thymleaf.png}" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <script th:src="@{/js/jquery-3.6.1.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<th:block th:replace="fragment/header :: headerFragment"></th:block>
+
+<h1>movie</h1>
+<form class="w-25 m-auto " method="post" th:action="@{/movie/search}">
+    <div class="mb-3 m-auto">
+        <label for="title" class="form-label" >title</label>
+        <input type="text" class="form-control" id="title">
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">검색</button>
+</form>
+<button class="w-100 btn btn-lg btn-primary" id="search" type="button">검색</button>
+
+
+<th:block th:replace="fragment/footer :: footerFragment"></th:block>
+
+</body>
+
+<script th:inline="javascript">
+    $(function () {
+
+        $("#search").click(function () {
+            searchMovie();
+        });
+
+        function searchMovie() {
+            $.ajax({
+                type: 'post',
+                url: '/movie/search',
+                async: true,
+                data: "json",
+                success: function (result) {
+                    console.log(result);
+                }, error: function (request, status, error) {
+                    console.log(error)
+                }
+            })
+        }
+        /* ajax */
+
+
+
+    });
+
+</script>
+</html>

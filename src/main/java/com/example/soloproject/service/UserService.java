@@ -17,6 +17,9 @@ public class UserService {
 
     public void createUser(UserDto userDto) {
 
+        /* Null Check*/
+        if(userDto.getUserId().isEmpty() || userDto.getAddress().isEmpty() || userDto.getName().isEmpty()) return;
+
         UserEntity userEntity = ModelMapperUtils.getMapper().map(userDto, UserEntity.class);
 
         userRepository.save(userEntity);
@@ -27,6 +30,21 @@ public class UserService {
     }
 
     public List<UserEntity> findAllUser() {
+
+        /* Test Table Data*/
+//        if (userRepository.findAll().isEmpty()) {
+//            UserDto userDto = UserDto.builder()
+//                    .userId("TestUserID")
+//                    .address("TestAddress")
+//                    .id(0L)
+//                    .name("TestName")
+//                    .build();
+//
+//            UserEntity userEntity = ModelMapperUtils.getMapper().map(userDto, UserEntity.class);
+//
+//            userRepository.save(userEntity);
+//        }
+
         return userRepository.findAll();
     }
 
