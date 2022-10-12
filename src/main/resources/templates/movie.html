@@ -42,7 +42,7 @@
                 async: true,
                 data: "json",
                 success: function (result) {
-                    console.log(result);
+                    $("#search").replaceWith(result);
                 }, error: function (request, status, error) {
                     console.log(error)
                 }
