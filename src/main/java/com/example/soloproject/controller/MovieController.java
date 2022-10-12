@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-@Controller
+@RestController
 @Slf4j
 public class MovieController {
 
@@ -17,10 +17,7 @@ public class MovieController {
     MovieService movieService;
 
 
-    @RequestMapping(value = "/movie", method = RequestMethod.GET)
-    public String movie() {
-        return "movie";
-    }
+
 
     @PostMapping("/movie/search")
     @ResponseBody

@@ -21,7 +21,7 @@
     </div>
     <button class="w-100 btn btn-lg btn-primary" type="submit">검색</button>
 </form>
-<button class="w-100 btn btn-lg btn-primary" id="search" type="button">검색</button>
+<!--<button class="w-100 btn btn-lg btn-primary" id="search" type="button">검색</button>-->
 
 
 <th:block th:replace="fragment/footer :: footerFragment"></th:block>
@@ -35,7 +35,7 @@
             searchMovie();
         });
 
-        function searchMovie() {
+        function searchMovie() {debugger;
             $.ajax({
                 type: 'post',
                 url: '/movie/search',
@@ -48,7 +48,9 @@
                 }
             })
         }
-        /* ajax */
+
+
+
 
 
 

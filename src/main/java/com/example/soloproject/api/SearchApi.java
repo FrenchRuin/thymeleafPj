@@ -1,8 +1,7 @@
 package com.example.soloproject.api;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.RequestEntity;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -11,7 +10,7 @@ import java.net.URI;
 import java.nio.charset.Charset;
 
 @Component
-public class MovieApi {
+public class SearchApi {
 
     @Value("${spring.naver.X-Naver-Client-Id}")
     private String clientId;
@@ -33,14 +32,18 @@ public class MovieApi {
 
         RestTemplate restTemplate = new RestTemplate();
 
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("X-Naver-Client-Id",clientId);
+        headers.set("X-Naver-Client-Secret",clientSecret);
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
         //Header를 사용
         RequestEntity<Void> req = RequestEntity
                 .get(uri)
-                .header("X-Naver-Client-Id", clientId)
-                .header("X-Naver-Client-Secret", clientSecret)
+                .headers(headers)
                 .build();
 
-        return restTemplate.exchange(req,String.class);
+        return restTemplate.exchange(req ,String.class);
     }
 
 }
