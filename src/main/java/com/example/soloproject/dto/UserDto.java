@@ -1,5 +1,7 @@
 package com.example.soloproject.dto;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,8 +13,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class UserDto {
+
     private Long id;
     private String userId;
     private String name;
     private String address;
+
+
+
 }

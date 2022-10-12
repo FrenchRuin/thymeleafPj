@@ -2100,7 +2100,7 @@
     //   // Fallback to 1 in case both values are `0`
     //   if (offsetWidth > 0) {
     //     scaleX = rect.width / offsetWidth || 1;
-    //   }
+    //   }1
     //   if (offsetHeight > 0) {
     //     scaleY = rect.height / offsetHeight || 1;
     //   }

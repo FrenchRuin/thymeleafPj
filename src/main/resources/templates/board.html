@@ -18,7 +18,7 @@
 <main>
     <h1 class="mt-5 mb-5 text-center m-auto">Board</h1>
     <div class="m-auto d-flex">
-        <form class="w-25 m-auto " method="post" th:action="@{/addBoard}" th:object="${userEntity}">
+        <form class="w-25 m-auto " method="post" th:action="@{/addBoard}" th:object="${userDto}">
             <div class="mb-3  m-auto">
                 <label for="userId" class="form-label">Id</label>
                 <input type="text" class="form-control" id="userId" th:field="*{userId}">

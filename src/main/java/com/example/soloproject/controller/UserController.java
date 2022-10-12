@@ -1,5 +1,10 @@
 package com.example.soloproject.controller;
 
+/*
+ view >/DTO/ controller >/DTO/ service >/ENTITY/ repository >/ENTITY/ db
+ *
+ */
+
 
 import com.example.soloproject.dto.UserDto;
 import com.example.soloproject.entity.UserEntity;
@@ -23,7 +28,7 @@ public class UserController {
     UserRepository userRepository;
 
     @RequestMapping(value = "/board", method = RequestMethod.GET)
-    public String board(Model model, UserEntity userEntity) {
+    public String board(Model model, UserDto userDto) {
         model.addAttribute("users", userService.findAllUser());
         return "board";
     }
@@ -31,7 +36,7 @@ public class UserController {
     @RequestMapping(value = "/addBoard", method = RequestMethod.POST)
     public String addBoard(Model model, UserDto userDto) {
 
-        model.addAttribute("user", new UserDto());
+        model.addAttribute("userDto", new UserDto());
 
         userService.createUser(userDto);
 
