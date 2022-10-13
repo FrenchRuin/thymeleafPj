@@ -10,7 +10,7 @@ import java.net.URI;
 import java.nio.charset.Charset;
 
 @Component
-public class SearchApi {
+public class MovieApi {
 
     @Value("${spring.naver.X-Naver-Client-Id}")
     private String clientId;

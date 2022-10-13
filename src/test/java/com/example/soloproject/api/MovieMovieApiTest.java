@@ -16,7 +16,7 @@ import java.util.Map;
 
 @SpringBootTest
 @Slf4j
-class MovieSearchApiTest {
+class MovieMovieApiTest {
 
 
     @DisplayName("1. api Test ")
