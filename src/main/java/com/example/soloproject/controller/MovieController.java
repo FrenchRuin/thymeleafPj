@@ -24,7 +24,8 @@ public class MovieController {
 
     @PostMapping("/movie/search")
     @ResponseBody
-    public ResponseEntity<String> searchMovie() {
-        return movieService.searchMovie();
+    public ResponseEntity<String> searchMovie(@RequestParam("title") String title) {
+        log.info(title);
+        return movieService.searchMovie(title);
     }
 }

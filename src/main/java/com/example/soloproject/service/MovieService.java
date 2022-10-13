@@ -18,8 +18,8 @@ public class MovieService {
     @Autowired
     SearchApi searchApi;
 
-    public ResponseEntity<String> searchMovie() {
-        return searchApi.searchMovie();
+    public ResponseEntity<String> searchMovie(String title) {
+        return searchApi.searchMovie(title);
     }
 
 

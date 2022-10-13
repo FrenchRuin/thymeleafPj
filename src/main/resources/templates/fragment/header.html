@@ -37,13 +37,18 @@
             </div>
         </div>
     </nav>
+
+    <script th:inline="javascript">
+        $(function () {
+            $("a.nav-link").click(function () {
+                $(this).addClass("active");
+                $(this).siblings(".nav-link").removeClass("active");
+            });
+        });
+    </script>
 </div>
 
-<script th:inline="javascript">
 
-
-
-</script>
 </body>
 
 <style>

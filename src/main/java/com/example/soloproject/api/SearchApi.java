@@ -17,12 +17,12 @@ public class SearchApi {
     @Value("${spring.naver.X-Naver-Client-Secret}")
     private String clientSecret;
 
-    public ResponseEntity<String> searchMovie(){
+    public ResponseEntity<String> searchMovie(String title){
 
         URI uri = UriComponentsBuilder
                 .fromUriString("https://openapi.naver.com")
                 .path("/v1/search/movie.json")
-                .queryParam("query","식객")
+                .queryParam("query",title)
                 .queryParam("display",10)
                 .queryParam("start",1)
                 .queryParam("country", "KR")

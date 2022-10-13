@@ -14,36 +14,50 @@
 <th:block th:replace="fragment/header :: headerFragment"></th:block>
 
 <h1>movie</h1>
+<div class="d-flex w-25">
+    <input type="text" id="title">
+    <button class="w-100 btn btn-lg btn-primary" id="search" type="button">검색</button>
+</div>
 
-<button class="w-100 btn btn-lg btn-primary" id="search" type="button">검색</button>
-<div id="replaceSome" class="d-flex w-75 m-auto "></div>
-
+<div id="replaceSome" class="d-flex w-75 m-auto"></div>
 
 </body>
 
 <script th:inline="javascript">
     $(function () {
 
+
         $("#search").click(function () {
+            $("#replaceSome").empty();
             searchMovie();
         });
 
         function searchMovie() {
+            let title = $("#title").val();
             $.ajax({
                 type: 'post',
                 url: '/movie/search',
                 async: true,
-                data: "json",
+                dataType: "json",
+                data: {"title": title},
                 success: function (result) {
-                    debugger;
                     console.log(result.items[0]);
                     for (let i = 0; i < result.items.length; i++) {
-                        $("#replaceSome").append(`<div class="card h-25" style="width: 18rem;">
-                                                  <img src="${result.items[i].image}" class="card-img-top h-25" alt="...">
+                        if (result.items[i].image == '') {
+                            $("#replaceSome").append(`<div class="card h-25" style="width: 18rem;">
+                                                  <img src="/img/sample_images_01.png" class="card-img-top h-25" alt="...">
                                                   <div class="card-body">
                                                     <p class="card-text">${result.items[i].title}</p>
                                                   </div>
                                                 </div>`);
+                        } else {
+                            $("#replaceSome").append(`<div class="card w-auto h-auto">
+                                                  <img src="${result.items[i].image}" class="card-img-top m-auto" style="width: 120px;height: 160px" alt="...">
+                                                  <div class="card-body">
+                                                    <p class="card-text">${result.items[i].title}</p>
+                                                  </div>
+                                                </div>`);
+                        }
                     }
                 }, error: function (request, status, error) {
                     console.log(error)
