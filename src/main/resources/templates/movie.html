@@ -9,17 +9,55 @@
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     <script th:src="@{/js/jquery-3.6.1.min.js}"></script>
     <script th:src="@{/js/bootstrap.min.js}"></script>
+
+    <style>
+        .bd-sidebar {
+            position: sticky;
+            top: 4rem;
+            z-index: 1000;
+            height: calc(100vh - 3rem);
+            background: #eee;
+            border-right: 1px solid rgba(0, 0, 0, .1);
+            overflow-y: auto;
+            min-width: 160px;
+            max-width: 220px;
+        }
+
+        .bd-sidebar .nav {
+            display: block;
+        }
+
+        .bd-sidebar .nav > li > a {
+            display: block;
+            padding: .25rem 1.5rem;
+            font-size: 90%;
+        }
+    </style>
 </head>
 <body>
 <th:block th:replace="fragment/header :: headerFragment"></th:block>
 
-<h1>movie</h1>
-<div class="d-flex w-25">
-    <input type="text" id="title">
-    <button class="w-100 btn btn-lg btn-primary" id="search" type="button">검색</button>
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-3 bd-sidebar">
+            <h1 class="text-center mt-2">movie</h1>
+
+            <form class="d-flex mt-3" >
+                <input class="form-control me-2" type="text" id="title" >
+                <button class="btn btn-outline-success" id="search" type="button">Search</button>
+            </form>
+            <ul class="nav">
+                <li><a>Side 7</a></li>
+                <li><a>Side 8</a></li>
+            </ul>
+            <br>
+        </div>
+        <main class="col-9 py-md-3 pl-md-5 bd-content" role="main">
+            <div id="replaceSome" class="row row-cols-1 row-cols-md-6 g-4"></div>
+        </main>
+    </div>
 </div>
 
-<div id="replaceSome" class="d-flex w-75 m-auto"></div>
 
 </body>
 
@@ -44,19 +82,27 @@
                     console.log(result.items[0]);
                     for (let i = 0; i < result.items.length; i++) {
                         if (result.items[i].image == '') {
-                            $("#replaceSome").append(`<div class="card h-25" style="width: 18rem;">
-                                                  <img src="/img/sample_images_01.png" class="card-img-top h-25" alt="...">
-                                                  <div class="card-body">
-                                                    <p class="card-text">${result.items[i].title}</p>
-                                                  </div>
-                                                </div>`);
+                            $("#replaceSome").append(` <div class="col">
+                                                            <div class="card">
+                                                              <img src="/img/thymleaf.png" class="img-fluid" alt="${result.items[i].title}">
+                                                              <div class="card-body">
+                                                                <h5 class="card-title">${result.items[i].title}</h5>
+                                                                <p class="card-text">${result.items[i].pubDate} / ${result.items[i].userRating}</p>
+                                                                <a class="btn btn-dark" target="_blank" href="${result.items[i].link}">Go</a>
+                                                              </div>
+                                                            </div>
+                                                          </div>`);
                         } else {
-                            $("#replaceSome").append(`<div class="card w-auto h-auto">
-                                                  <img src="${result.items[i].image}" class="card-img-top m-auto" style="width: 120px;height: 160px" alt="...">
-                                                  <div class="card-body">
-                                                    <p class="card-text">${result.items[i].title}</p>
-                                                  </div>
-                                                </div>`);
+                            $("#replaceSome").append(`<div class="col">
+                                                            <div class="card">
+                                                              <img src="${result.items[i].image}" class="img-fluid" alt="${result.items[i].title}">
+                                                              <div class="card-body">
+                                                                <h5 class="card-title">${result.items[i].title}</h5>
+                                                                <p class="card-text">${result.items[i].pubDate} / ${result.items[i].userRating} </p>
+                                                                <a class="btn btn-dark" target="_blank" href="${result.items[i].link}">Go</a>
+                                                              </div>
+                                                            </div>
+                                                          </div>`);
                         }
                     }
                 }, error: function (request, status, error) {

@@ -9,65 +9,86 @@
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     <script th:src="@{/js/jquery-3.6.1.min.js}"></script>
     <script th:src="@{/js/bootstrap.min.js}"></script>
+    <style>
+        .bd-sidebar {
+            position: sticky;
+            top: 4rem;
+            z-index: 1000;
+            height: calc(100vh - 3rem);
+            background: #eee;
+            border-right: 1px solid rgba(0, 0, 0, .1);
+            overflow-y: auto;
+            min-width: 160px;
+            max-width: 500px;
+        }
+
+        .bd-sidebar .nav {
+            display: block;
+        }
+
+        .bd-sidebar .nav > li > a {
+            display: block;
+            padding: .25rem 1.5rem;
+            font-size: 90%;
+        }
+    </style>
 </head>
 
 <body>
 <th:block th:replace="fragment/header :: headerFragment">
 
 </th:block>
-
-<main>
-    <h1 class="mt-5 mb-5 text-center m-auto">User</h1>
-    <div class="m-auto d-flex">
-        <form class="w-25 m-auto " method="post" th:action="@{/addUser}" th:object="${userDto}">
-            <div class="mb-3  m-auto">
-                <label for="userId" class="form-label">Id</label>
-                <input type="text" class="form-control" id="userId" th:field="*{userId}">
-            </div>
-            <div class="mb-3 m-auto">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" th:field="*{name}">
-            </div>
-            <div class="mb-3  m-auto">
-                <label for="address" class="form-label">Address</label>
-                <input type="text" class="form-control" id="address" th:field="*{address}">
-            </div>
-            <div class="d-flex justify-content-evenly">
-                <div class="text-center">
-                    <button type="submit" id="sumbit" class="btn btn-outline-danger">등록</button>
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-3 bd-sidebar">
+            <h1 class="text-center mt-2">User</h1>
+            <form class=" " method="post" th:action="@{/addUser}" th:object="${userDto}">
+                <div class="mb-3  m-auto">
+                    <label for="userId" class="form-label">Id</label>
+                    <input type="text" class="form-control" id="userId" th:field="*{userId}">
                 </div>
-                <div class="text-center">
-                    <button type="button" th:onclick="|location.href='/deleteUser'|" class="btn btn-outline-secondary">
-                        전체삭제
-                    </button>
+                <div class="mb-3 m-auto">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" th:field="*{name}">
                 </div>
-            </div>
-        </form>
-
-        <table class="table table-dark w-50 text-center m-auto mt-5">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">id</th>
-                <th scope="col">name</th>
-                <th scope="col">address</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="userDto : ${users}">
-                <th scope="row" th:text="${userDto.id}"></th>
-                <td th:text="${userDto.userId}"></td>
-                <td th:text="${userDto.name}"></td>
-                <td th:text="${userDto.address}"></td>
-            </tr>
-            </tbody>
-        </table>
+                <div class="mb-3  m-auto">
+                    <label for="address" class="form-label">Address</label>
+                    <input type="text" class="form-control" id="address" th:field="*{address}">
+                </div>
+                <div class="d-flex justify-content-evenly">
+                    <div class="text-center">
+                        <button type="submit" id="sumbit" class="btn btn-outline-danger">등록</button>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" th:onclick="|location.href='/deleteUser'|" class="btn btn-outline-secondary">
+                            전체삭제
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <main class="col-9 py-md-3 pl-md-5 bd-content" role="main">
+            <table class="table table-light w-75 text-center m-auto mt-5">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">id</th>
+                    <th scope="col">name</th>
+                    <th scope="col">address</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="userDto : ${users}">
+                    <th scope="row" th:text="${userDto.id}"></th>
+                    <td th:text="${userDto.userId}"></td>
+                    <td th:text="${userDto.name}"></td>
+                    <td th:text="${userDto.address}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </main>
     </div>
-
-
-</main>
-
-<th:block th:replace="fragment/footer :: footerFragment"></th:block>
+</div>
 
 <script th:inline="javascript">
     $(function () {
