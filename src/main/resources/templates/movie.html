@@ -14,17 +14,10 @@
 <th:block th:replace="fragment/header :: headerFragment"></th:block>
 
 <h1>movie</h1>
-<form class="w-25 m-auto " method="post" th:action="@{/movie/search}">
-    <div class="mb-3 m-auto">
-        <label for="title" class="form-label" >title</label>
-        <input type="text" class="form-control" id="title">
-    </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">검색</button>
-</form>
-<!--<button class="w-100 btn btn-lg btn-primary" id="search" type="button">검색</button>-->
 
+<button class="w-100 btn btn-lg btn-primary" id="search" type="button">검색</button>
+<div id="replaceSome" class="d-flex w-75 m-auto "></div>
 
-<th:block th:replace="fragment/footer :: footerFragment"></th:block>
 
 </body>
 
@@ -35,25 +28,28 @@
             searchMovie();
         });
 
-        function searchMovie() {debugger;
+        function searchMovie() {
             $.ajax({
                 type: 'post',
                 url: '/movie/search',
                 async: true,
                 data: "json",
                 success: function (result) {
-                    $("#search").replaceWith(result);
+                    debugger;
+                    console.log(result.items[0]);
+                    for (let i = 0; i < result.items.length; i++) {
+                        $("#replaceSome").append(`<div class="card h-25" style="width: 18rem;">
+                                                  <img src="${result.items[i].image}" class="card-img-top h-25" alt="...">
+                                                  <div class="card-body">
+                                                    <p class="card-text">${result.items[i].title}</p>
+                                                  </div>
+                                                </div>`);
+                    }
                 }, error: function (request, status, error) {
                     console.log(error)
                 }
             })
         }
-
-
-
-
-
-
     });
 
 </script>

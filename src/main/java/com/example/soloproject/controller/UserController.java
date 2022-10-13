@@ -44,8 +44,5 @@ public class UserController {
         return "redirect:/user";
     }
 
-    @RequestMapping(value = "/movie", method = RequestMethod.GET)
-    public String movie() {
-        return "movie";
-    }
+
 }
