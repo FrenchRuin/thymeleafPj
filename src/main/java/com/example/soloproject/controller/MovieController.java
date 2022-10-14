@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -24,8 +25,7 @@ public class MovieController {
 
     @PostMapping("/movie/search")
     @ResponseBody
-    public ResponseEntity<String> searchMovie(@RequestParam("title") String title) {
-        log.info(title);
+    public Map<String,Object> searchMovie(@RequestParam("title") String title) {
         return movieService.searchMovie(title);
     }
 }
