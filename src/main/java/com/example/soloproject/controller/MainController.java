@@ -15,4 +15,9 @@ public class MainController {
         return "index";
     }
 
+    @RequestMapping(value = "/movie", method = RequestMethod.GET)
+    public String movie() {
+        return "movie";
+    }
+
 }

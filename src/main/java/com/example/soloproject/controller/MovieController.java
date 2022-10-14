@@ -1,5 +1,7 @@
 package com.example.soloproject.controller;
 
+import com.example.soloproject.api.MovieApi;
+import com.example.soloproject.dto.MovieDto;
 import com.example.soloproject.service.MovieService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,21 +13,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-@Controller
+@RestController
 @Slf4j
 public class MovieController {
 
     @Autowired
     MovieService movieService;
 
-    @RequestMapping(value = "/movie", method = RequestMethod.GET)
-    public String movie() {
-        return "movie";
-    }
+    @Autowired
+    MovieApi movieApi;
 
     @PostMapping("/movie/search")
-    @ResponseBody
-    public Map<String,Object> searchMovie(@RequestParam("title") String title) {
-        return movieService.searchMovie(title);
+    public Map<String, Object> searchMovie(@RequestParam("title") String title) {
+        return movieApi.search(title);
     }
 }

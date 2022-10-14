@@ -1,5 +1,8 @@
 package com.example.soloproject.service;
 
+import com.example.soloproject.api.MovieApi;
+import com.example.soloproject.dto.MovieDto;
+import com.example.soloproject.entity.MovieEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,42 +24,39 @@ import java.util.Map;
 @Slf4j
 public class MovieService {
 
-    @Value("${spring.naver.X-Naver-Client-Id}")
-    private String clientId;
-    @Value("${spring.naver.X-Naver-Client-Secret}")
-    private String clientSecret;
+    @Autowired
+    MovieApi movieApi;
 
 
+    public MovieDto entityToDto(MovieEntity entity) {
 
-    public Map<String,Object> searchMovie(String title) {
-
-        URI uri = UriComponentsBuilder
-                .fromUriString("https://openapi.naver.com")
-                .path("/v1/search/movie.json")
-                .queryParam("query",title)
-                .queryParam("display",10)
-                .queryParam("start",1)
-                .queryParam("country", "KR")
-                .encode(Charset.forName("UTF-8"))
-                .build()
-                .toUri();
-
-        RestTemplate restTemplate = new RestTemplate();
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("X-Naver-Client-Id",clientId);
-        headers.set("X-Naver-Client-Secret",clientSecret);
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        //Header를 사용
-        RequestEntity<Void> req = RequestEntity
-                .get(uri)
-                .headers(headers)
+        return MovieDto
+                .builder()
+                .actor(entity.getActor())
+                .director(entity.getDirector())
+                .image(entity.getImage())
+                .link(entity.getLink())
+                .pubDate(entity.getPubDate())
+                .subTitle(entity.getSubTitle())
+                .title(entity.getTitle())
+                .userRating(entity.getUserRating())
                 .build();
-
-        ResponseEntity<Map<String,Object>> dd = restTemplate.exchange(req, new ParameterizedTypeReference<>() {});
-
-        return  dd.getBody();
     }
+
+    public MovieEntity dtoToEntity(MovieDto dto) {
+
+        return MovieEntity
+                .builder()
+                .actor(dto.getActor())
+                .director(dto.getDirector())
+                .image(dto.getImage())
+                .link(dto.getLink())
+                .pubDate(dto.getPubDate())
+                .subTitle(dto.getSubTitle())
+                .title(dto.getTitle())
+                .userRating(dto.getUserRating())
+                .build();
+    }
+
 
 }

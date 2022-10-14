@@ -35,4 +35,4 @@ spring:
   weather:
     encId : "u3c%2BFM4W0o9PJttotd3XxnLfGZlnRY09U9h2ZijN%2FQmAVXffmyX5d81ebxLxlSxDr6H6ajh5KQq%2BCKdzDtbK1g%3D%3D"
     decId : "u3c+FM4W0o9PJttotd3XxnLfGZlnRY09U9h2ZijN/QmAVXffmyX5d81ebxLxlSxDr6H6ajh5KQq+CKdzDtbK1g=="
-    url : "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0"
+    url : "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst"
