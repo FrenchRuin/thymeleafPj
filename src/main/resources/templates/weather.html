@@ -7,6 +7,7 @@
     <title>Weather</title>
     <link rel="shortcut icon" th:href="@{/img/thymleaf.png}" type="image/x-icon">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <script th:src="@{/js/jquery-3.6.1.min.js}"></script>
     <script th:href="@{/js/bootstrap.min.js}"></script>
 </head>
 
@@ -17,9 +18,37 @@
     <img src="https://item.kakaocdn.net/do/166ebe6691fa2e36dd17d82e75ba9f7ef43ad912ad8dd55b04db6a64cddaf76d" alt="Cute">
 </div>
 
+<div class="w-25 m-auto">
+    <button class="btn btn-outline-success" id="search" type="button">Search</button>
+</div>
+<div id="replaceDiv"></div>
 <th:block th:replace="fragment/footer :: footerFragment">
 </th:block>
 
 
 </body>
+
+<script th:inline="javascript">
+
+    $(function () {
+
+        $("#search").click(function () {
+            search();
+        });
+
+
+        function search() {
+            $.ajax({
+                type:'GET',
+                url : "/weather/search",
+                async: true,
+                dataType : "JSON",
+                success: function (res) {
+                    $("#replaceDiv").replaceWith(`dddddd`);
+                },
+            })
+        }
+    });
+
+</script>
 </html>

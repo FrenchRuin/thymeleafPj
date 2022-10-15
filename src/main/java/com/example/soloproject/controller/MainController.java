@@ -20,4 +20,10 @@ public class MainController {
         return "movie";
     }
 
+    @RequestMapping(value = "/weather", method = RequestMethod.GET)
+    public String weather() {
+        return "weather";
+    }
+
+
 }

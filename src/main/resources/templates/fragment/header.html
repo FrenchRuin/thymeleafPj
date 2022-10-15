@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <script th:src="@{/js/jquery-3.6.1.min.js}"></script>
     <script th:href="@{/js/bootstrap.min.js}"></script>
     <title>Main page</title>
 </head>
@@ -23,6 +24,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/movie}">Movie</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/weather}">weather</a>
                     </li>
                 </ul>
                 <div class="text-center position-absolute start-50 end-50">
@@ -56,6 +60,17 @@
             $(this).addClass("active");
             $(this).siblings(".nav-link").removeClass("active");
         });
+
+        $.ajax({
+            type:'GET',
+            url : "/weather/search",
+            async: true,
+            dataType : "JSON",
+            success: function (res) {
+                console.log(res.response.body.items);
+            },
+        })
+
     });
 </script>
 
