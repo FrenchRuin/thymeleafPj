@@ -41,9 +41,8 @@
     <div class="row flex-nowrap">
         <div class="col-3 bd-sidebar">
             <h1 class="text-center mt-2">movie</h1>
-
-            <form class="d-flex mt-3" >
-                <input class="form-control me-2" type="text" id="title" >
+            <form class="d-flex mt-3">
+                <input class="form-control me-2" type="text" id="title">
                 <button class="btn btn-outline-success" id="search" type="button">Search</button>
             </form>
             <ul class="nav">
@@ -73,7 +72,7 @@
         function searchMovie() {
             let title = $("#title").val();
             $.ajax({
-                type: 'post',
+                type: 'get',
                 url: '/movie/search',
                 async: true,
                 dataType: "json",

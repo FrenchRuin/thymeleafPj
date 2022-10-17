@@ -27,8 +27,7 @@ public class MovieService {
     @Autowired
     MovieApi movieApi;
 
-
-    public MovieDto entityToDto(MovieEntity entity) {
+    private MovieDto entityToDto(MovieEntity entity) {
 
         return MovieDto
                 .builder()
@@ -43,7 +42,7 @@ public class MovieService {
                 .build();
     }
 
-    public MovieEntity dtoToEntity(MovieDto dto) {
+    private MovieEntity dtoToEntity(MovieDto dto) {
 
         return MovieEntity
                 .builder()

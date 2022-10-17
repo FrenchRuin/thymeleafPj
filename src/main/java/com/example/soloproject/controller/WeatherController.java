@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -23,7 +24,7 @@ public class WeatherController {
     WeatherService weatherService;
 
     @RequestMapping(value = "/weather/search", method = RequestMethod.GET)
-    public Map<String, Object> search() {
-       return  weatherService.search();
+    public Map<String, Object> search() throws IOException {
+       return  weatherApi.search();
     }
 }

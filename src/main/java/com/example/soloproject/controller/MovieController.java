@@ -23,8 +23,9 @@ public class MovieController {
     @Autowired
     MovieApi movieApi;
 
-    @PostMapping("/movie/search")
+    @RequestMapping(value = "/movie/search",method = RequestMethod.GET)
     public Map<String, Object> searchMovie(@RequestParam("title") String title) {
+        log.info(title);
         return movieApi.search(title);
     }
 }

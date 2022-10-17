@@ -44,7 +44,7 @@
                 async: true,
                 dataType : "JSON",
                 success: function (res) {
-                    $("#replaceDiv").replaceWith(`dddddd`);
+                    console.log(res.response.body.items);
                 },
             })
         }
