@@ -13,12 +13,13 @@
 
 <body>
 <th:block th:replace="fragment/header :: headerFragment"></th:block>
-<h1>weather api page</h1>
 <div class="text-center mt-5">
+    <h1>TMP Value Error</h1>
     <img src="https://item.kakaocdn.net/do/166ebe6691fa2e36dd17d82e75ba9f7ef43ad912ad8dd55b04db6a64cddaf76d" alt="Cute">
 </div>
 
 <div class="w-25 m-auto">
+
     <button class="btn btn-outline-success" id="search" type="button">Search</button>
 </div>
 <div id="replaceDiv"></div>
@@ -38,13 +39,20 @@
 
 
         function search() {
+            let tmp;
+
             $.ajax({
-                type:'GET',
-                url : "/weather/search",
+                type: 'GET',
+                url: "/weather/search",
                 async: true,
-                dataType : "JSON",
+                dataType: "JSON",
                 success: function (res) {
-                    console.log(res.response.body.items);
+                    for (let i = 0; i < res.items.item.length; i++) {
+                        if (res.items.item[i].category == "TMP") {
+                            tmp = res.items.item[i].fcstValue;
+                        }
+                    }
+                    console.log(tmp);
                 },
             })
         }
