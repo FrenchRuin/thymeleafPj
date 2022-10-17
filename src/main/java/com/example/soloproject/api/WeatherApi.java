@@ -35,7 +35,7 @@ public class WeatherApi {
     @Value("${spring.weather.url}")
     private String url;
 
-    public Map<String, Object> search() throws IOException {
+    public Map<String,Object> search() throws IOException {
 
         /* Sysdate */
         SimpleDateFormat now = new SimpleDateFormat("yyyyMMdd");
@@ -73,8 +73,8 @@ public class WeatherApi {
         ObjectMapper mapper = new ObjectMapper();
         HashMap<String,Object> map = mapper.readValue(sb.toString(), HashMap.class);
 
-        Map<String, Object> response = (Map<String, Object>) map.get("response");
 
-        return (Map<String, Object>) response.get("body");
+
+        return map;
     }
 }

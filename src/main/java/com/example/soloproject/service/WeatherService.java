@@ -18,8 +18,15 @@ public class WeatherService {
     @Autowired
     WeatherApi weatherApi;
 
-    public Map<String,Object> search() throws IOException {
-        return  weatherApi.search();
+    public List<Object> search() throws IOException {
+        Map<String, Object> weatherMap = weatherApi.search();
+
+        /* find temperature value */
+        Map<String, Object> response = (Map<String, Object>) weatherMap.get("response");
+        Map<String, Object> body = (Map<String, Object>) response.get("body");
+        Map<String, Object> items = (Map<String, Object>) body.get("items");
+
+        return  (List<Object>) items.get("item");
     }
 
 }

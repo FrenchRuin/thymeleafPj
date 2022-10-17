@@ -47,12 +47,7 @@
                 async: true,
                 dataType: "JSON",
                 success: function (res) {
-                    for (let i = 0; i < res.items.item.length; i++) {
-                        if (res.items.item[i].category == "TMP") {
-                            tmp = res.items.item[i].fcstValue;
-                        }
-                    }
-                    console.log(tmp);
+                    console.log(res);
                 },
             })
         }
