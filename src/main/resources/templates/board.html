@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <title>Movie</title>
+    <link rel="shortcut icon" th:href="@{/img/thymleaf.png}" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <script th:src="@{/js/jquery-3.6.1.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+
+    <style>
+        .bd-sidebar {
+            position: sticky;
+            top: 4rem;
+            z-index: 1000;
+            height: calc(100vh - 3rem);
+            background: #eee;
+            border-right: 1px solid rgba(0, 0, 0, .1);
+            overflow-y: auto;
+            min-width: 160px;
+            max-width: 450px;
+        }
+
+        .bd-sidebar .nav {
+            display: block;
+        }
+
+        .bd-sidebar .nav > li > a {
+            display: block;
+            padding: .25rem 1.5rem;
+            font-size: 90%;
+        }
+    </style>
+</head>
+<body>
+<th:block th:replace="fragment/header :: headerFragment"></th:block>
+
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-3 bd-sidebar">
+            <h1 class="text-center mt-2">movie</h1>
+            <form class="d-flex mt-3">
+                <input class="form-control me-2" type="text" id="title">
+                <button class="btn btn-outline-success" id="search" type="button">Search</button>
+            </form>
+            <ul class="nav">
+                <li><a>Side 7</a></li>
+                <li><a>Side 8</a></li>
+            </ul>
+            <br>
+        </div>
+        <main class="col-9 py-md-3 pl-md-5 bd-content" role="main">
+            <div id="replaceSome" class="row row-cols-1 row-cols-md-6 g-4"></div>
+        </main>
+    </div>
+</div>
+
+
+</body>
+
+<script th:inline="javascript">
+
+</script>
+
+</html>

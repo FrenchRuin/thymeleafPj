@@ -25,5 +25,8 @@ public class MainController {
         return "weather";
     }
 
-
+    @RequestMapping(value = "/board", method = RequestMethod.GET)
+    public String board() {
+        return "board";
+    }
 }
