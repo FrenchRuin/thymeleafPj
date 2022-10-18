@@ -1,12 +1,11 @@
 package com.example.soloproject.dto;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -15,9 +14,12 @@ import lombok.NoArgsConstructor;
 public class UserDto {
 
     private Long id;
-    private String userId;
+    private String user_id;
     private String name;
-    private String address;
+    private String address1;
+    private String address2;
     private String number;
-
+    private String birth;
+    private String password;
+    private String email;
 }

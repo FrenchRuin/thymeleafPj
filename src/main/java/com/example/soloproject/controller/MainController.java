@@ -15,18 +15,4 @@ public class MainController {
         return "index";
     }
 
-    @RequestMapping(value = "/movie", method = RequestMethod.GET)
-    public String movie() {
-        return "movie";
-    }
-
-    @RequestMapping(value = "/weather", method = RequestMethod.GET)
-    public String weather() {
-        return "weather";
-    }
-
-    @RequestMapping(value = "/board", method = RequestMethod.GET)
-    public String board() {
-        return "user";
-    }
 }

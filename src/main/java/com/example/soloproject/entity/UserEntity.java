@@ -2,7 +2,6 @@ package com.example.soloproject.entity;
 
 import javax.persistence.*;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,25 +12,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity
+@Table(name = "Users")
 public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
     private String userId;
 
-    @Column
     private String name;
 
-    @Column
     private String number;
 
-    @Column
     private String address;
 
-    @Column
     private String email;
 
 

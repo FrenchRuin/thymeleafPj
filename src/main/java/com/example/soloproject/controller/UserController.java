@@ -14,35 +14,23 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @Slf4j
 public class UserController {
 
-    @Autowired
-    UserService userService;
-
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public String board(Model model, UserDto userDto) {
-        model.addAttribute("users", userService.findAllUser());
+    @RequestMapping(value = "/user",method = RequestMethod.GET)
+    public String user(Model model, UserDto userDto) {
+        model.addAttribute("userDto", userDto);
         return "user";
     }
 
-    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
-    public String addBoard(Model model, UserDto userDto) {
-
-        model.addAttribute("userDto", new UserDto());
-        userService.createUser(userDto);
-
+    @RequestMapping(value = "/user/add",method = RequestMethod.POST)
+    public String addUser(HttpServletRequest request, Model model, UserDto userDto) {
+        log.info("User : {}", userDto);
         return "redirect:/user";
     }
-
-    @RequestMapping(value = "/deleteUser")
-    public String deleteBoard() {
-
-       userService.deleteUser();
-
-        return "redirect:/user";
-    }
-
 
 }

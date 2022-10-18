@@ -3,8 +3,19 @@ package com.example.soloproject.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
+@Table(name = "Address")
 public class AddressEntity {
 
     @Id
@@ -12,7 +23,7 @@ public class AddressEntity {
     private Long id;
 
     private String address;
-    private String zip_code;
+    private String zipCode;
     private String city;
     private String country;
 }
