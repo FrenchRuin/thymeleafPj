@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "userTest")
 public class UserEntity {
 
     @Id
@@ -27,7 +26,13 @@ public class UserEntity {
     private String name;
 
     @Column
+    private String number;
+
+    @Column
     private String address;
+
+    @Column
+    private String email;
 
 
 }

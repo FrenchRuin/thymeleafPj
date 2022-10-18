@@ -27,6 +27,6 @@ public class MainController {
 
     @RequestMapping(value = "/board", method = RequestMethod.GET)
     public String board() {
-        return "board";
+        return "user";
     }
 }

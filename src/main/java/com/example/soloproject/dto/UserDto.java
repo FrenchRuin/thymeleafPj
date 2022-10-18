@@ -18,7 +18,6 @@ public class UserDto {
     private String userId;
     private String name;
     private String address;
-
-
+    private String number;
 
 }

@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import com.example.soloproject.repository.BoardRepository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,4 +21,8 @@ public class BoardEntity {
     @Id
     @GeneratedValue
     private Long id;
+
+    private String userName;
+    private String title;
+    private String content;
 }
