@@ -10,51 +10,78 @@
     <script th:src="@{/js/jquery-3.6.1.min.js}"></script>
     <script th:src="@{/js/bootstrap.min.js}"></script>
 
-    <style>
-        .bd-sidebar {
-            position: sticky;
-            top: 4rem;
-            z-index: 1000;
-            height: calc(100vh - 3rem);
-            background: #eee;
-            border-right: 1px solid rgba(0, 0, 0, .1);
-            overflow-y: auto;
-            min-width: 160px;
-            max-width: 450px;
-        }
-
-        .bd-sidebar .nav {
-            display: block;
-        }
-
-        .bd-sidebar .nav > li > a {
-            display: block;
-            padding: .25rem 1.5rem;
-            font-size: 90%;
-        }
-    </style>
 </head>
 <body>
 <th:block th:replace="fragment/header :: headerFragment"></th:block>
 
-<div class="container-fluid">
-    <div class="row flex-nowrap">
-        <div class="col-3 bd-sidebar">
-            <h1 class="text-center mt-2">movie</h1>
-            <form class="d-flex mt-3">
-                <input class="form-control me-2" type="text" id="title">
-                <button class="btn btn-outline-success" id="search" type="button">Search</button>
-            </form>
-            <ul class="nav">
-                <li><a>Side 7</a></li>
-                <li><a>Side 8</a></li>
-            </ul>
-            <br>
+<div class="w-50 m-auto mt-5">
+
+
+    <form class="row g-3">
+        <div class="col-md-6">
+            <label for="inputEmail4" class="form-label">Email</label>
+            <input type="email" class="form-control" id="inputEmail4">
         </div>
-        <main class="col-9 py-md-3 pl-md-5 bd-content" role="main">
-            <div id="replaceSome" class="row row-cols-1 row-cols-md-6 g-4"></div>
-        </main>
-    </div>
+        <div class="col-md-6">
+            <label for="inputPassword4" class="form-label">Password</label>
+            <input type="password" class="form-control" id="inputPassword4">
+        </div>
+        <div class="col-12">
+            <label for="inputAddress" class="form-label">Address</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+        </div>
+        <div class="col-12">
+            <label for="inputAddress2" class="form-label">Address 2</label>
+            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+        </div>
+        <div class="col-md-6">
+            <label for="inputCity" class="form-label">City</label>
+            <input type="text" class="form-control" id="inputCity">
+        </div>
+        <div class="col-md-4">
+            <label for="inputState" class="form-label">State</label>
+            <select id="inputState" class="form-select">
+                <option selected>Choose...</option>
+                <option>...</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <label for="inputZip" class="form-label">Zip</label>
+            <input type="text" class="form-control" id="inputZip">
+        </div>
+        <div class="col-12">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck">
+                <label class="form-check-label" for="gridCheck">
+                    Check me out
+                </label>
+            </div>
+        </div>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+            <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Sign in</button>
+        </div>
+    </form>
+<!--    <table class="table">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th scope="col">#</th>-->
+<!--            <th scope="col">First</th>-->
+<!--            <th scope="col">Last</th>-->
+<!--            <th scope="col">Handle</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr>-->
+<!--            <th scope="row">3</th>-->
+<!--            <td colspan="2">Larry the Bird</td>-->
+<!--            <td>@twitter</td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
 </div>
 
 
