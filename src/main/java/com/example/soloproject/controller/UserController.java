@@ -46,7 +46,7 @@ public class UserController {
 
     @RequestMapping(value = "/user/detail", method = RequestMethod.GET)
     public String userDetail(@RequestParam("userId") String userId, Model model) {
-        userService.findUserDetail(userId);
+        model.addAttribute("user", userService.findUserDetail(userId));
         return "userDetail";
     }
 
