@@ -25,16 +25,21 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(value = "/user",method = RequestMethod.GET)
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String user(Model model, UserDto userDto) {
-        model.addAttribute("userDto", userDto);
+        model.addAttribute("userList", userService.findAllUser());
         return "user";
     }
 
-    @RequestMapping(value = "/user/add",method = RequestMethod.POST)
-    public String addUser(HttpServletRequest request, Model model, UserDto userDto) {
+    @RequestMapping(value = "/user/add", method = RequestMethod.POST)
+    public String addUser(UserDto userDto) {
         userService.addUser(userDto);
         return "redirect:/user";
     }
 
+    @RequestMapping(value = "/user/deleteAll", method = RequestMethod.GET)
+    public String deleteAllUser() {
+        userService.deleteAllUser();
+        return "redirect:/user";
+    }
 }

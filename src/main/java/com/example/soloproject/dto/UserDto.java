@@ -14,9 +14,8 @@ import java.util.Date;
 public class UserDto {
 
     private Long id;
-    private String user_id;
+    private String userId;
     private String name;
-    private String address;
     private String number;
     private String birth;
     private String password;
