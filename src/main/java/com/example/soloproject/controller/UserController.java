@@ -7,6 +7,7 @@ package com.example.soloproject.controller;
 
 import com.example.soloproject.dto.UserDto;
 import com.example.soloproject.service.UserService;
+import com.example.soloproject.utils.ModelMapperUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,9 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 public class UserController {
 
+    @Autowired
+    UserService userService;
+
     @RequestMapping(value = "/user",method = RequestMethod.GET)
     public String user(Model model, UserDto userDto) {
         model.addAttribute("userDto", userDto);
@@ -29,7 +33,7 @@ public class UserController {
 
     @RequestMapping(value = "/user/add",method = RequestMethod.POST)
     public String addUser(HttpServletRequest request, Model model, UserDto userDto) {
-        log.info("User : {}", userDto);
+        userService.addUser(userDto);
         return "redirect:/user";
     }
 

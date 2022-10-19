@@ -26,37 +26,44 @@
             <label for="password" class="form-label">PassWord</label>
             <input type="text" class="form-control" id="password" th:field="*{password}">
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email"  th:field="*{email}">
-        </div>
-        <div class="col-md-6">
-            <label for="birth" class="form-label">Birth</label>
-            <input type="text" class="form-control" id="birth"  th:field="*{birth}">
-        </div>
-        <div class="col-md-6">
-            <label for="inputCity" class="form-label">City</label>
-            <input type="text" class="form-control" id="inputCity"  >
+            <input type="email" class="form-control" id="email" th:field="*{email}">
         </div>
         <div class="col-md-4">
+            <label for="number" class="form-label">Number</label>
+            <input type="email" class="form-control" id="number" th:field="*{number}">
+        </div>
+        <div class="col-md-4">
+            <label for="birth" class="form-label">Birth</label>
+            <input type="text" class="form-control" id="birth" th:field="*{birth}">
+        </div>
+
+        <div class="col-md-4">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" th:field="*{name}">
+        </div>
+        <div class="col-md-3">
+            <label for="inputCity" class="form-label">City</label>
+            <input type="text" class="form-control" id="inputCity">
+        </div>
+        <div class="col-md-3">
             <label for="inputState" class="form-label">State</label>
             <select id="inputState" class="form-select">
                 <option selected>Choose...</option>
                 <option>...</option>
             </select>
         </div>
+
         <div class="col-md-2">
             <label for="zipCode" class="form-label">Zip</label>
             <input type="text" class="form-control" id="zipCode">
         </div>
         <div class="col-12">
-            <label for="mainAddress" class="form-label">Main Address</label>
-            <input type="text" class="form-control" id="mainAddress" placeholder="1234 Main St" th:field="*{address1}">
+            <label for="address" class="form-label">Main Address</label>
+            <input type="text" class="form-control" id="address" placeholder="1234 Main St" th:field="*{address}">
         </div>
-        <div class="col-12">
-            <label for="detailAddress" class="form-label">Detail Address</label>
-            <input type="text" class="form-control" id="detailAddress" placeholder="Apartment, studio, or floor" th:field="*{address2}">
-        </div>
+
         <div class="col-12 text-center">
             <button type="submit" class="btn btn-primary">Sign in</button>
         </div>
