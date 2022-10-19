@@ -41,6 +41,15 @@ public class UserService {
         return userDtoList;
     }
 
+    public UserDto findUserDetail(String userId) {
+        UserEntity entity = userRepository.findByUserId(userId);
+
+        UserDto userDto = modelMapper.getMapper().map(entity, UserDto.class);
+
+        return userDto;
+    }
+
+
     public void deleteAllUser() {
         userRepository.deleteAll();
     }

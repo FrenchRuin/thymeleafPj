@@ -30,11 +30,11 @@
         </div>
         <div class="col-md-4">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" th:field="*{email}">
+            <input type="text" class="form-control" id="email" th:field="*{email}">
         </div>
         <div class="col-md-4">
             <label for="number" class="form-label">Number</label>
-            <input type="email" class="form-control" id="number" th:field="*{number}">
+            <input type="text" class="form-control" id="number" th:field="*{number}">
         </div>
         <div class="col-md-4">
             <label for="birth" class="form-label">Birth</label>
@@ -50,7 +50,7 @@
         <button type="button" class="btn btn-dark" th:onclick="|location.href='/user/deleteAll'|">Delete All User
         </button>
     </div>
-    <table class="table mt-5">
+    <table class="table mt-3">
         <thead>
         <tr>
             <th scope="col">#</th>
@@ -62,7 +62,7 @@
         <tbody>
         <tr th:each="list : ${userList}">
             <th><span th:text="${list.id}"></span></th>
-            <td><span th:text="${list.userId}"></span></td>
+            <td><a th:href="@{/user/detail(userId = ${list.userId})}" th:text="${list.userId}"></a></td>
             <td><span th:text="${list.name}"></span></td>
             <td><span th:text="${list.email}"></span></td>
         </tr>

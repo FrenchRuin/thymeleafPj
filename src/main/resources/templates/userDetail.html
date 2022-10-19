@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <title>Movie</title>
+    <link rel="shortcut icon" th:href="@{/img/thymleaf.png}" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <script th:src="@{/js/jquery-3.6.1.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+
+</head>
+<body>
+<th:block th:replace="fragment/header :: headerFragment"></th:block>
+
+<div class="w-50 m-auto mt-5">
+    <div class="d-flex justify-content-evenly mt-5">
+        <h2>Users</h2>
+        <button type="button" class="btn btn-dark" th:onclick="|location.href='/user'|">Back to Add User
+        </button>
+    </div>
+</div>
+
+
+</body>
+
+<script th:inline="javascript">
+
+</script>
+
+</html>

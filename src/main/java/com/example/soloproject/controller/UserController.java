@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -42,4 +43,12 @@ public class UserController {
         userService.deleteAllUser();
         return "redirect:/user";
     }
+
+    @RequestMapping(value = "/user/detail", method = RequestMethod.GET)
+    public String userDetail(@RequestParam("userId") String userId, Model model) {
+        userService.findUserDetail(userId);
+        return "userDetail";
+    }
+
+
 }

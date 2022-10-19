@@ -7,23 +7,26 @@ spring:
     prefix: classpath:/templates/
     suffix: .html
 
-  datasource:
-    hikari:
-      driver-class-name: org.h2.Driver
-      username: sa
-      jdbc-url: jdbc:h2:mem:user
-      password:
+#  datasource:
+#    hikari:
+#      driver-class-name: org.h2.Driver
+#      username: sa
+#      jdbc-url: jdbc:h2:mem:user
+#      password:
 
+ # difference in h2 DB
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: as2646
+    url: jdbc:mysql://localhost:3306/SpringTest
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
         format_sql: true
     defer-datasource-initialization: true
 
-  h2:
-    console:
-      enabled: true
