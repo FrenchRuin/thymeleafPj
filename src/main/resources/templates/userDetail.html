@@ -16,35 +16,63 @@
 
 <div class="w-50 m-auto mt-5">
     <div class="d-flex justify-content-evenly">
-        <h3>User - </h3>
         <button type="button" class="btn btn-dark text-center" th:onclick="|location.href='/user'|">Back to Add User
         </button>
     </div>
-    <div class="mt-5" th:object="${user}">
+    <hr>
+    <div class="mt-2" th:object="${user}">
         <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-            <div class="col-sm-10">
-                <input type="text"  th:text="*{userId}" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
+            <label for="userId" class="col-sm-2 col-form-label fw-bold">UserId</label>
+            <div class="col-sm-8">
+                <span class="form-control-plaintext" id="userId" th:text="*{userId}"></span>
             </div>
         </div>
         <div class="mb-3 row">
-            <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+            <label for="name" class="col-sm-2 col-form-label fw-bold">Name</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" id="inputPassword">
+                <span class="form-control-plaintext" id="name" th:text="*{name}"></span>
             </div>
         </div>
+        <div class="mb-3 row">
+            <label for="number" class="col-sm-2 col-form-label fw-bold">Number</label>
+            <div class="col-sm-10">
+                <span class="form-control-plaintext" id="number" th:text="*{number}"></span>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="birth" class="col-sm-2 col-form-label fw-bold">Birth</label>
+            <div class="col-sm-10">
+                <span class="form-control-plaintext" id="birth" th:text="*{birth}"></span>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="email" class="col-sm-2 col-form-label fw-bold">Email</label>
+            <div class="col-sm-10">
+                <span class="form-control-plaintext" id="email" th:text="*{email}"></span>
+            </div>
+        </div>
+        <form class="row g-3" method="post" th:object="${addressDto}" th:action="@{/user/detailSave}">
+            <div class="col-md-4">
+                <label for="country" class="form-label">Country</label>
+                <input type="text" class="form-control" id="country" th:field="*{country}" th:text="${country}">
+            </div>
+            <div class="col-md-4">
+                <label for="city" class="form-label">City</label>
+                <input type="text" class="form-control" id="city" th:field="*{city}"  th:text="${city}">
+            </div>
+            <div class="col-md-4">
+                <label for="zipCode" class="form-label">Zip-Code</label>
+                <input type="text" class="form-control" id="zipCode" th:field="*{zipCode}" th:text="${zipCode}">
+            </div>
+            <div class="col-12">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" class="form-control" id="address" th:field="*{address}" th:text="${address}">
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-success">Save</button>
+            </div>
+        </form>
     </div>
-    <form>
-        <div class="mb-3">
-            <label for="address" class="form-label">Address</label>
-            <input type="email" class="form-control" id="address" placeholder="name@example.com">
-        </div>
-        <div class="mb-3">
-            <label for="content" class="form-label">Introduce Yourself</label>
-            <textarea class="form-control" id="content" rows="3"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Save</button>
-    </form>
 </div>
 
 

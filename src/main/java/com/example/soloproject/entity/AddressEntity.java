@@ -22,6 +22,7 @@ public class AddressEntity {
     @GeneratedValue
     private Long id;
 
+    private String userId;
     private String address;
     private String zipCode;
     private String city;

@@ -1,7 +1,10 @@
 package com.example.soloproject.service;
 
+import com.example.soloproject.dto.AddressDto;
 import com.example.soloproject.dto.UserDto;
+import com.example.soloproject.entity.AddressEntity;
 import com.example.soloproject.entity.UserEntity;
+import com.example.soloproject.repository.AddressRepository;
 import com.example.soloproject.repository.UserRepository;
 import com.example.soloproject.utils.ModelMapperUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +20,9 @@ public class UserService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    AddressRepository addressRepository;
 
     @Autowired
     ModelMapperUtils modelMapper;
@@ -47,6 +53,20 @@ public class UserService {
         UserDto userDto = modelMapper.getMapper().map(entity, UserDto.class);
 
         return userDto;
+    }
+
+    public AddressDto findUserAddress(String userId) {
+
+        AddressEntity addressEntity = addressRepository.findByUserId(userId);
+
+        AddressDto addressDto = modelMapper.getMapper().map(addressEntity, AddressDto.class);
+
+        return addressDto;
+    }
+
+    public void addUserAddress(AddressDto addressDto) {
+        AddressEntity addressEntity = modelMapper.getMapper().map(addressDto, AddressEntity.class);
+        addressRepository.save(addressEntity);
     }
 
 

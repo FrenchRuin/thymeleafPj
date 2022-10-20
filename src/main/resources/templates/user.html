@@ -61,7 +61,7 @@
         </thead>
         <tbody>
         <tr th:each="list : ${userList}">
-            <th><span th:text="${list.id}"></span></th>
+            <th scope="row">1</th>
             <td><a th:href="@{/user/detail(userId = ${list.userId})}" th:text="${list.userId}"></a></td>
             <td><span th:text="${list.name}"></span></td>
             <td><span th:text="${list.email}"></span></td>

@@ -5,6 +5,7 @@ package com.example.soloproject.controller;
  */
 
 
+import com.example.soloproject.dto.AddressDto;
 import com.example.soloproject.dto.UserDto;
 import com.example.soloproject.service.UserService;
 import com.example.soloproject.utils.ModelMapperUtils;
@@ -15,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -45,10 +47,18 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user/detail", method = RequestMethod.GET)
-    public String userDetail(@RequestParam("userId") String userId, Model model) {
+    public String userDetail(@RequestParam("userId") String userId, Model model, AddressDto addressDto){
         model.addAttribute("user", userService.findUserDetail(userId));
+        model.addAttribute("addressDto", userService.findUserAddress(userId));
+//        model.addAttribute("address",)
         return "userDetail";
     }
 
-
+    @RequestMapping(value = "/user/detailSave", method = RequestMethod.POST)
+    public String userDetailSave(AddressDto addressDto, RedirectAttributes redirectAttributes) {
+        redirectAttributes.addAttribute(addressDto.getUserId());
+        userService.addUserAddress(addressDto);
+        log.info(addressDto.toString());
+        return "redirect:/user/detail";
+    }
 }
