@@ -59,12 +59,15 @@ public class UserService {
 
         AddressEntity addressEntity = addressRepository.findByUserId(userId);
 
+        if (addressEntity == null) {
+            return new AddressDto();
+        }
         AddressDto addressDto = modelMapper.getMapper().map(addressEntity, AddressDto.class);
-
         return addressDto;
     }
 
-    public void addUserAddress(AddressDto addressDto) {
+    public void addUserAddress(AddressDto addressDto, String userId) {
+        addressDto.setUserId(userId);
         AddressEntity addressEntity = modelMapper.getMapper().map(addressDto, AddressEntity.class);
         addressRepository.save(addressEntity);
     }

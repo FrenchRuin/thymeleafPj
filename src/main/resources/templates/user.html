@@ -50,18 +50,16 @@
         <button type="button" class="btn btn-dark" th:onclick="|location.href='/user/deleteAll'|">Delete All User
         </button>
     </div>
-    <table class="table mt-3">
+    <table class="table mt-3 text-center" >
         <thead>
         <tr>
-            <th scope="col">#</th>
             <th scope="col">Id</th>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="list : ${userList}">
-            <th scope="row">1</th>
+        <tr th:each="list : ${userList}" >
             <td><a th:href="@{/user/detail(userId = ${list.userId})}" th:text="${list.userId}"></a></td>
             <td><span th:text="${list.name}"></span></td>
             <td><span th:text="${list.email}"></span></td>
