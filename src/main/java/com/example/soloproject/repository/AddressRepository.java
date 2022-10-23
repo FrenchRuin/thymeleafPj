@@ -9,8 +9,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface AddressRepository extends JpaRepository<AddressEntity,Long> {
 
-    AddressEntity findByUserId(String userId);
-
 
     /* Not recommend Update Query Use //
 

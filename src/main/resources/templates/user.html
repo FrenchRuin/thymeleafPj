@@ -17,16 +17,12 @@
 <div class="w-50 m-auto mt-5">
     <form class="row g-3" th:action="@{/user/add}" th:object="${userDto}" method="post">
         <div class="col-md-4">
+            <label for="userId" class="form-label">ID</label>
+            <input type="text" class="form-control" id="userId" th:field="*{userId}">
+        </div>
+        <div class="col-md-4">
             <label for="name" class="form-label">Name</label>
             <input type="text" class="form-control" id="name" th:field="*{name}">
-        </div>
-        <div class="col-md-4">
-            <label for="id" class="form-label">Id</label>
-            <input type="text" class="form-control" id="id" th:field="*{userId}">
-        </div>
-        <div class="col-md-4">
-            <label for="password" class="form-label">PassWord</label>
-            <input type="text" class="form-control" id="password" th:field="*{password}">
         </div>
         <div class="col-md-4">
             <label for="email" class="form-label">Email</label>

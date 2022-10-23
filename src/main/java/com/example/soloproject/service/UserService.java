@@ -56,20 +56,22 @@ public class UserService {
     }
 
     public AddressDto findUserAddress(String userId) {
+        UserDto userDto = findUserDetail(userId);
 
-        AddressEntity addressEntity = addressRepository.findByUserId(userId);
-
-        if (addressEntity == null) {
+        if (userDto.getAddress() == null) {
             return new AddressDto();
         }
-        AddressDto addressDto = modelMapper.getMapper().map(addressEntity, AddressDto.class);
-        return addressDto;
+        return userDto.getAddress();
     }
 
-    public void addUserAddress(AddressDto addressDto, String userId) {
-        addressDto.setUserId(userId);
-        AddressEntity addressEntity = modelMapper.getMapper().map(addressDto, AddressEntity.class);
-        addressRepository.save(addressEntity);
+    public void saveUserAddress(AddressDto addressDto, String userId) {
+        UserDto userDto = findUserDetail(userId);
+
+        userDto.setAddress(addressDto);
+
+        UserEntity userEntity = modelMapper.getMapper().map(userDto, UserEntity.class);
+
+        userRepository.save(userEntity);
     }
 
 

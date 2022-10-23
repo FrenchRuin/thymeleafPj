@@ -2,6 +2,7 @@ package com.example.soloproject.entity;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,14 +13,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "Users")
+@Table(name = "User")
 public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_id")
     private String userId;
 
     private String name;
@@ -28,9 +28,9 @@ public class UserEntity {
 
     private String birth;
 
-    private String password;
-
     private String email;
 
+    @OneToOne(mappedBy = "user")
+    private AddressEntity address;
 
 }

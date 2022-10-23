@@ -1,11 +1,11 @@
 package com.example.soloproject.entity;
 
-import javax.persistence.*;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
@@ -16,12 +16,7 @@ public class AddressEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "address_id")
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private UserEntity userId;
 
     private String address;
 
@@ -31,4 +26,8 @@ public class AddressEntity {
     private String city;
 
     private String country;
+
+    @OneToOne
+    @JoinColumn(name = "user")
+    private UserEntity user;
 }

@@ -60,7 +60,7 @@ public class UserController {
 
     @RequestMapping(value = "/user/detailSave", method = RequestMethod.POST)
     public String userDetailSave(@RequestParam("userId") String userId, AddressDto addressDto, RedirectAttributes redirectAttributes) {
-        userService.addUserAddress(addressDto, userId);
+        userService.saveUserAddress(addressDto, userId);
         redirectAttributes.addAttribute("userId", userId);
         return "redirect:/user/detail";
     }

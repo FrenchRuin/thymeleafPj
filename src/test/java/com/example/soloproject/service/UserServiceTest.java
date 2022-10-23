@@ -12,6 +12,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -30,17 +31,20 @@ class UserServiceTest {
     @Autowired
     AddressRepository addressRepository;
 
+    @Transactional
     @DisplayName("1. address Null Test ")
     @Test
     void test_1(){
 
-        AddressEntity addressEntity = addressRepository.findByUserId("toxic023");
+        UserDto userDto = new UserDto();
 
-        if (addressEntity == null) {
-            log.info("userDto : {}", new UserDto());
-        }else{
-            AddressDto addressDto = modelMapperUtils.getMapper().map(addressEntity, AddressDto.class);
-            log.info("addressDto : {}", addressDto);
-        }
+        AddressDto addressDto = new AddressDto();
+        addressDto.setAddress("서울시 강서구");
+
+        userDto.setAddress(addressDto);
+
+        UserEntity userEntity = modelMapperUtils.getMapper().map(userDto, UserEntity.class);
+
+        userRepository.save(userEntity);
     }
 }
