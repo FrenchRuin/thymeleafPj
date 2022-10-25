@@ -27,7 +27,4 @@ public class AddressEntity {
 
     private String country;
 
-    @OneToOne
-    @JoinColumn(name = "user")
-    private UserEntity user;
 }

@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "User")
+@Table(name = "users")
 public class UserEntity {
 
     @Id
@@ -30,7 +30,8 @@ public class UserEntity {
 
     private String email;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne
+    @JoinColumn(name = "ADDRESS_ID")
     private AddressEntity address;
 
 }
