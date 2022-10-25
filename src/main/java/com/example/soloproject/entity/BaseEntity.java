@@ -1,32 +1,19 @@
 package com.example.soloproject.entity;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.EntityListeners;
+import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
-@Data
-@EqualsAndHashCode
-@Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "Address")
-public class AddressEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String address;
-
-    private String zipCode;
-
-    private String city;
-
-    private String country;
+@MappedSuperclass
+@Getter
+public abstract class BaseEntity {
 
     @CreatedDate
     @Column(updatable = false)
