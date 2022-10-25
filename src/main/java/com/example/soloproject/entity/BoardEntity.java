@@ -7,15 +7,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+@EqualsAndHashCode
 @Entity
 @Table(name = "Board")
 public class BoardEntity {
@@ -24,7 +19,7 @@ public class BoardEntity {
     @GeneratedValue
     private Long id;
 
-    private String userName;
+    private String userId;
     private String title;
     private String content;
 }

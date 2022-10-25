@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @Builder
 public class BoardDto {
 
-    private Long board_id;
-    private String userName;
+    private Long id;
+    private String userId;
     private String title;
     private String content;
 }
