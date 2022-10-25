@@ -1,8 +1,5 @@
 package com.example.soloproject.dto;
 
-import com.example.soloproject.entity.UserEntity;
-import lombok.Data;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

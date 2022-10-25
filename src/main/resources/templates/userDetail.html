@@ -21,55 +21,58 @@
     </div>
     <hr>
     <div class="mt-2">
-        <div class="mb-3 row">
-            <label for="userId" class="col-sm-2 col-form-label fw-bold">ID</label>
-            <div class="col-sm-10">
-                <span class="form-control-plaintext" id="userId" th:text="*{user.userId}"></span>
+        <form class="row g-3" method="post" th:action="@{/user/detailSave(userId = ${userDto.userId})}">
+            <span class="visually-hidden" th:field="*{userDto.id}"></span>
+            <div class="mb-3 row">
+                <label for="userId" class="col-sm-2 col-form-label fw-bold">ID</label>
+                <div class="col-sm-10">
+                    <span class="form-control-plaintext" id="userId" th:text="*{userDto.userId}" th:field="*{userDto.userId}"></span>
+                </div>
             </div>
-        </div>
-        <div class="mb-3 row">
-            <label for="name" class="col-sm-2 col-form-label fw-bold">Name</label>
-            <div class="col-sm-10">
-                <span class="form-control-plaintext" id="name" th:text="*{user.name}"></span>
+            <div class="mb-3 row">
+                <label for="name" class="col-sm-2 col-form-label fw-bold">Name</label>
+                <div class="col-sm-10">
+                    <span class="form-control-plaintext" id="name" th:text="*{userDto.name}" th:field="*{userDto.name}"></span>
+                </div>
             </div>
-        </div>
-        <div class="mb-3 row">
-            <label for="number" class="col-sm-2 col-form-label fw-bold">Number</label>
-            <div class="col-sm-10">
-                <span class="form-control-plaintext" id="number" th:text="*{user.number}"></span>
+            <div class="mb-3 row">
+                <label for="number" class="col-sm-2 col-form-label fw-bold">Number</label>
+                <div class="col-sm-10">
+                    <span class="form-control-plaintext" id="number" th:text="*{userDto.number}"></span>
+                </div>
             </div>
-        </div>
-        <div class="mb-3 row">
-            <label for="birth" class="col-sm-2 col-form-label fw-bold">Birth</label>
-            <div class="col-sm-10">
-                <span class="form-control-plaintext" id="birth" th:text="*{user.birth}"></span>
+            <div class="mb-3 row">
+                <label for="birth" class="col-sm-2 col-form-label fw-bold">Birth</label>
+                <div class="col-sm-10">
+                    <span class="form-control-plaintext" id="birth" th:text="*{userDto.birth}"></span>
+                </div>
             </div>
-        </div>
-        <div class="mb-3 row">
-            <label for="email" class="col-sm-2 col-form-label fw-bold">Email</label>
-            <div class="col-sm-10">
-                <span class="form-control-plaintext" id="email" th:text="*{user.email}"></span>
+            <div class="mb-3 row">
+                <label for="email" class="col-sm-2 col-form-label fw-bold">Email</label>
+                <div class="col-sm-10">
+                    <span class="form-control-plaintext" id="email" th:text="*{userDto.email}"></span>
+                </div>
             </div>
-        </div>
-        <form class="row g-3" method="post" th:object="${addressDto}" th:action="@{/user/detailSave(userId = ${user.userId})}">
+            <span class="visually-hidden" th:field="*{userDto.address.id}"></span>
             <div class="col-md-4">
                 <label for="country" class="form-label">Country</label>
-                <input type="text" class="form-control" id="country" th:field="*{country}" th:text="${country}">
+                <input type="text" class="form-control" id="country" th:field="*{userDto.address.country}">
             </div>
             <div class="col-md-4">
                 <label for="city" class="form-label">City</label>
-                <input type="text" class="form-control" id="city" th:field="*{city}"  th:text="${city}">
+                <input type="text" class="form-control" id="city" th:field="*{userDto.address.city}">
             </div>
             <div class="col-md-4">
                 <label for="zipCode" class="form-label">Zip-Code</label>
-                <input type="text" class="form-control" id="zipCode" th:field="*{zipCode}" th:text="${zipCode}">
+                <input type="text" class="form-control" id="zipCode" th:field="*{userDto.address.zipCode}">
             </div>
             <div class="col-12">
                 <label for="address" class="form-label">Address</label>
-                <input type="text" class="form-control" id="address" th:field="*{address}" th:text="${address}">
+                <input type="text" class="form-control" id="address" th:field="*{userDto.address.address}">
             </div>
             <div class="col-md-2">
-                <button type="submit" class="btn btn-success" th:text="${address == null} ? 'Save' : 'Update'"></button>
+                <button type="submit" class="btn btn-success"
+                        th:text="${userDto.address.address == null} ? 'Save' : 'Update'"></button>
             </div>
         </form>
     </div>

@@ -1,6 +1,7 @@
 package com.example.soloproject.dto;
 
 import com.example.soloproject.entity.AddressEntity;
+import com.example.soloproject.entity.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,4 +22,5 @@ public class UserDto {
     private String birth;
     private String email;
     private AddressDto address;
+
 }

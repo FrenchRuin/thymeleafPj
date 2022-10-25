@@ -52,24 +52,15 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user/detail", method = RequestMethod.GET)
-    public String userDetail(@RequestParam("userId") String userId, Model model) {
-        model.addAttribute("user", userService.findUserDetail(userId));
-        model.addAttribute("addressDto", userService.findUserAddress(userId));
+    public String userDetail(@RequestParam("userId") String userId,UserDto userDto, Model model) {
+        model.addAttribute("userDto", userService.findUser(userId));
         return "userDetail";
     }
 
     @RequestMapping(value = "/user/detailSave", method = RequestMethod.POST)
-    public String userDetailSave(@RequestParam("userId") String userId, AddressDto addressDto, RedirectAttributes redirectAttributes) {
-        userService.saveUserAddress(addressDto, userId);
+    public String userDetailSave(@RequestParam("userId") String userId,UserDto userDto, RedirectAttributes redirectAttributes) {
+        userService.saveUserAddress(userId, userDto);
         redirectAttributes.addAttribute("userId", userId);
         return "redirect:/user/detail";
-    }
-
-    @RequestMapping(value = "user/detailUpdate", method = RequestMethod.POST)
-    public String userDetailUpdate(@RequestParam("userId") String userId,AddressDto addressDto,RedirectAttributes redirectAttributes) {
-        log.info("update");
-        redirectAttributes.addAttribute("userId", userId);
-        return "redirect:/user/detail";
-
     }
 }

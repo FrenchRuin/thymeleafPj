@@ -47,29 +47,20 @@ public class UserService {
         return userDtoList;
     }
 
-    public UserDto findUserDetail(String userId) {
-        UserEntity entity = userRepository.findByUserId(userId);
+    public UserDto findUser(String userId) {
+        UserEntity userEntity = userRepository.findByUserId(userId);
 
-        UserDto userDto = modelMapper.getMapper().map(entity, UserDto.class);
-
+        UserDto userDto = modelMapper.getMapper().map(userEntity, UserDto.class);
         return userDto;
     }
 
-    public AddressDto findUserAddress(String userId) {
-        UserDto userDto = findUserDetail(userId);
 
-        if (userDto.getAddress() == null) {
-            return new AddressDto();
-        }
-        return userDto.getAddress();
-    }
+    public void saveUserAddress(String userId, UserDto userDto) {
+        UserDto user = findUser(userId);
 
-    public void saveUserAddress(AddressDto addressDto, String userId) {
-        UserDto userDto = findUserDetail(userId);
+        user.setAddress(userDto.getAddress());
 
-        userDto.setAddress(addressDto);
-
-        UserEntity userEntity = modelMapper.getMapper().map(userDto, UserEntity.class);
+        UserEntity userEntity = modelMapper.getMapper().map(user, UserEntity.class);
 
         userRepository.save(userEntity);
     }

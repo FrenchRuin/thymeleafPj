@@ -31,9 +31,9 @@ class UserRepositoryTest {
         log.info("{}", userEntity);
         UserEntity user = userRepository.findByUserId("toxic023");
 
-//        user.setUserId("dlwocks023");
-//        userRepository.save(user);
-//        log.info("{}", user);
+        user.setUserId("dlwocks023");
+        userRepository.save(user);
+        log.info("{}", user);
 
 
 
