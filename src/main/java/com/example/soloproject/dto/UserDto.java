@@ -7,7 +7,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -22,5 +24,6 @@ public class UserDto {
     private String birth;
     private String email;
     private AddressDto address;
+    private List<BoardDto> boards;
 
 }

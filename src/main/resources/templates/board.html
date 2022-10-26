@@ -18,7 +18,7 @@
     <form class="row g-3 w-25">
         <div class="col-12">
             <label for="userId" class="form-label">ID</label>
-            <input type="text" class="form-control" id="userId" placeholder="ID">
+            <input type="text" class="form-control" id="userId"  placeholder="ID">
         </div>
         <div class="col-12">
             <label for="title" class="form-label">Title</label>
@@ -29,7 +29,7 @@
             <textarea class="form-control" id="content" rows="6"></textarea>
         </div>
         <div class="col-12">
-            <button type="button" th:onclick="addBoard()" class="btn btn-primary">Apply</button>
+            <button type="button" th:onclick="|javascript:addBoard()|" class="btn btn-primary">Apply</button>
         </div>
     </form>
     <table class="table w-50">
@@ -37,15 +37,14 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Title</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
+        <tr th:each="list : ${boardList}">
+            <td>1</td>
+            <td><span></span></td>
+            <td><span></span></td>
         </tr>
         </tbody>
     </table>
@@ -55,19 +54,22 @@
 </body>
 
 <script th:inline="javascript">
-    $(function () {
-
         function addBoard() {
+            let param = {
+                userId: $('#userId').val() ,
+                title: $('#title').val() ,
+                content :$('#content').val()
+            }
             $.ajax({
                 type: "POST",
-                url:"/board/add"
+                url: "/board/add",
+                async: true,
+                data: param,
+                success: function (res) {
+                    console.log(res);
+                },
             })
         }
-
-
-    });
-
-
 </script>
 
 </html>

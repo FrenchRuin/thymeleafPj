@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @EqualsAndHashCode
@@ -32,8 +34,11 @@ public class UserEntity  {
     private String email;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "ADDRESS_ID")
+    @JoinColumn(name = "address")
     private AddressEntity address;
+
+    @OneToMany(mappedBy = "user")
+    private List<BoardEntity> boards = new ArrayList<>();
 
     @CreatedDate
     @Column(updatable = false)
@@ -42,5 +47,4 @@ public class UserEntity  {
     @LastModifiedDate
     @Column(updatable = false)
     private LocalDateTime updatedAt;
-
 }

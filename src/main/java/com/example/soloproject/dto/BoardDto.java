@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class BoardDto {
 
     private Long id;
-    private String userId;
     private String title;
     private String content;
+    private UserDto user;
 }
