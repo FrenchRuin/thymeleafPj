@@ -17,6 +17,10 @@
 <div class="w-100 m-auto mt-5 d-flex justify-content-evenly">
     <form class="row g-3 w-25">
         <div class="col-12">
+            <label for="userId" class="form-label">ID</label>
+            <input type="text" class="form-control" id="userId" placeholder="ID">
+        </div>
+        <div class="col-12">
             <label for="title" class="form-label">Title</label>
             <input type="text" class="form-control" id="title" placeholder="Title">
         </div>
@@ -25,7 +29,7 @@
             <textarea class="form-control" id="content" rows="6"></textarea>
         </div>
         <div class="col-12">
-            <button type="submit" class="btn btn-primary">Apply</button>
+            <button type="button" th:onclick="addBoard()" class="btn btn-primary">Apply</button>
         </div>
     </form>
     <table class="table w-50">
@@ -51,6 +55,18 @@
 </body>
 
 <script th:inline="javascript">
+    $(function () {
+
+        function addBoard() {
+            $.ajax({
+                type: "POST",
+                url:"/board/add"
+            })
+        }
+
+
+    });
+
 
 </script>
 
