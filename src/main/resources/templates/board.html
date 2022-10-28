@@ -18,7 +18,7 @@
     <form class="row g-3 w-25">
         <div class="col-12">
             <label for="userId" class="form-label">ID</label>
-            <input type="text" class="form-control" id="userId"  placeholder="ID">
+            <input type="text" class="form-control" id="userId" placeholder="ID">
         </div>
         <div class="col-12">
             <label for="title" class="form-label">Title</label>
@@ -43,33 +43,36 @@
         <tbody>
         <tr th:each="list : ${boardList}">
             <td>1</td>
-            <td><span></span></td>
-            <td><span></span></td>
+            <td><span th:text="${list.title}"></span></td>
+            <td><span th:text="${list.user.userId}"></span></td>
         </tr>
         </tbody>
     </table>
 </div>
-
-
 </body>
 
 <script th:inline="javascript">
-        function addBoard() {
-            let param = {
-                userId: $('#userId').val() ,
-                title: $('#title').val() ,
-                content :$('#content').val()
-            }
-            $.ajax({
-                type: "POST",
-                url: "/board/add",
-                async: true,
-                data: param,
-                success: function (res) {
-                    console.log(res);
-                },
-            })
+
+    function addBoard() {
+        let param = {
+            userId: $('#userId').val(),
+            title: $('#title').val(),
+            content: $('#content').val()
         }
+        $.ajax({
+            type: "POST",
+            url: "/board/add",
+            async: true,
+            data: param,
+            success: function (res) {
+                if (res.msg == "fail") {
+                    alert("존재하지 않는 아이디입니다.");
+                } else {
+                    alert("등록되었습니다.");
+                }
+            },
+        })
+    }
 </script>
 
 </html>

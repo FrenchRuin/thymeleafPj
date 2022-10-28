@@ -22,7 +22,7 @@ public class BoardController {
     BoardService boardService;
 
     @RequestMapping(value = "/board/add", method = RequestMethod.POST)
-    public void addBoard(@RequestParam Map<String,Object> param) {
-        boardService.addBoard(param);
+    public Map<String,Object> addBoard(@RequestParam Map<String,Object> param) {
+        return boardService.addBoard(param);
     }
 }

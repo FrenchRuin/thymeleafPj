@@ -4,6 +4,9 @@ package com.example.soloproject.entity;
 import javax.persistence.*;
 
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 

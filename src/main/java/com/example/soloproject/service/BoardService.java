@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -40,10 +41,13 @@ public class BoardService {
         return boardList;
     }
 
-    public void addBoard(Map<String, Object> param) {
+    public Map<String,Object> addBoard(Map<String, Object> param) {
+        Map<String, Object> result = new HashMap<>();
+
         UserEntity userEntity = userRepository.findByUserId((String) param.get("userId"));
         if (userEntity == null) {
-            return;
+            result.put("msg", "fail");
+            return result;
         }
         BoardEntity boardEntity = new BoardEntity();
         boardEntity.setContent((String) param.get("content"));
@@ -51,7 +55,9 @@ public class BoardService {
         boardEntity.setUser(userEntity);
 
         boardRepository.save(boardEntity);
-        log.info("boardEntity : {}", boardEntity);
+
+        result.put("msg", "success");
+        return result;
     }
 
 }

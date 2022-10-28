@@ -1,5 +1,8 @@
 package com.example.soloproject.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.data.annotation.CreatedDate;
@@ -37,7 +40,8 @@ public class UserEntity  {
     @JoinColumn(name = "address")
     private AddressEntity address;
 
-    @OneToMany(mappedBy = "user")
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<BoardEntity> boards = new ArrayList<>();
 
     @CreatedDate
