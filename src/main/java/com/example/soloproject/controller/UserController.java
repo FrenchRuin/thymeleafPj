@@ -35,7 +35,7 @@ public class UserController {
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String user(Model model, UserDto userDto) {
-        model.addAttribute("userList", userService.findAllUser());
+        model.addAttribute("userData", userService.findAllUser());
         return "user";
     }
 

@@ -20,6 +20,6 @@ public class UserDto {
     private String birth;
     private String email;
     private AddressDto address;
-    private List<BoardDto> boards;
+    private List<BoardDto> boards = new ArrayList<>();
 
 }

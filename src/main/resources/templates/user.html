@@ -56,13 +56,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="list : ${userList}" >
+        <tr th:each="data : ${userData}" >
             <td>
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
             </td>
-            <td><a th:href="@{/user/detail(userId = ${list.userId})}" th:text="${list.userId}"></a></td>
-            <td><span th:text="${list.name}"></span></td>
-            <td><span th:text="${list.email}"></span></td>
+            <td><a th:href="@{/user/detail(userId = ${data.userId})}" th:text="${data.userId}"></a></td>
+            <td><span th:text="${data.name}"></span></td>
+            <td><span th:text="${data.email}"></span></td>
         </tr>
         </tbody>
     </table>

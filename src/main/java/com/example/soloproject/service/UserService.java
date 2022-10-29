@@ -36,7 +36,7 @@ public class UserService {
 
     public List<UserDto> findAllUser() {
 
-        List<UserEntity> userEntityList = userRepository.findAll();
+        List<UserEntity> userEntityList = userRepository.findAllData();
 
         /* List UserEntity  >> List UserDto */
         List<UserDto> userDtoList = userEntityList.stream()

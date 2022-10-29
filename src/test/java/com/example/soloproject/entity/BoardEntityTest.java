@@ -1,6 +1,8 @@
 package com.example.soloproject.entity;
 
+import com.example.soloproject.dto.BoardDto;
 import com.example.soloproject.dto.UserDto;
+import com.example.soloproject.repository.BoardRepository;
 import com.example.soloproject.repository.UserRepository;
 import com.example.soloproject.utils.ModelMapperUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -10,7 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @SpringBootTest
@@ -21,18 +24,39 @@ class BoardEntityTest {
     UserRepository userRepository;
 
     @Autowired
+    BoardRepository boardRepository;
+
+    @Autowired
     ModelMapperUtils modelMapperUtils;
 
     @Transactional
-    @DisplayName("1. ")
+    @DisplayName("1. fetch join test by UserRepository")
     @Test
-    void test_1(){
-        UserEntity user = userRepository.findByUserId("toxic023");
+    void test_1() {
+        // (all Data Success) //
+        List<UserEntity> userEntityList = userRepository.findUserAddressData();
 
-        UserDto userDto = modelMapperUtils.getMapper().map(user, UserDto.class);
+        List<UserDto> userDtoList = userEntityList.stream().map(userEntity ->
+                modelMapperUtils.getMapper().map(userEntity, UserDto.class)).collect(Collectors.toList());
 
-        log.info(userDto.toString());
-
+        log.info("userList : {}", userDtoList);
     }
+
+    @Transactional
+    @DisplayName("2. fetch join test2 by BoardRepository ")
+    @Test
+    void test_2() {
+
+        //(Fail, need to select in UserRepository)//
+
+        List<BoardEntity> boardEntityList = boardRepository.findUserBoard();
+
+        List<BoardDto> boardDtoList = boardEntityList.stream().map(boardEntity ->
+                modelMapperUtils.getMapper().map(boardEntity, BoardDto.class)
+        ).collect(Collectors.toList());
+
+        log.info("boards : {}", boardDtoList);
+    }
+
 
 }

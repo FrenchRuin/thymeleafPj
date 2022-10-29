@@ -14,24 +14,26 @@
 <body>
 <th:block th:replace="fragment/header :: headerFragment"></th:block>
 <h2 class="text-center mt-2"> Board </h2>
-<div class="w-100 m-auto mt-5 d-flex justify-content-evenly">
-    <form class="row g-3 w-25">
-        <div class="col-12">
-            <label for="userId" class="form-label">ID</label>
-            <input type="text" class="form-control" id="userId" placeholder="ID">
-        </div>
-        <div class="col-12">
-            <label for="title" class="form-label">Title</label>
-            <input type="text" class="form-control" id="title" placeholder="Title">
-        </div>
-        <div class="col-12">
-            <label for="content" class="form-label">Content</label>
-            <textarea class="form-control" id="content" rows="6"></textarea>
-        </div>
-        <div class="col-12">
-            <button type="button" th:onclick="|javascript:addBoard()|" class="btn btn-primary">Apply</button>
-        </div>
-    </form>
+<div class="w-100 m-auto mt-5 d-flex justify-content-evenly position-relative">
+    <div class="">
+        <form class="w-100 row g-3 w-25">
+            <div class="col-12">
+                <label for="userId" class="form-label">ID</label>
+                <input type="text" class="form-control" id="userId" placeholder="ID">
+            </div>
+            <div class="col-12">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" placeholder="Title">
+            </div>
+            <div class="col-12">
+                <label for="content" class="form-label">Content</label>
+                <textarea class="form-control" id="content" rows="6"></textarea>
+            </div>
+            <div class="col-12">
+                <button type="button" th:onclick="|javascript:addBoard()|" class="btn btn-primary">Apply</button>
+            </div>
+        </form>
+    </div>
     <table class="table w-50">
         <thead>
         <tr>
