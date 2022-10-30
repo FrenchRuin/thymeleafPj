@@ -16,7 +16,11 @@ public interface UserRepository extends JpaRepository<UserEntity, String> {
     @Query("select distinct u from UserEntity u join fetch u.boards join fetch u.address")
     List<UserEntity> findAllData();
 
-    @Query("select distinct u from UserEntity u join fetch u.boards")
-    List<UserEntity> findUserAddressData();
+    @Query("select u from UserEntity u join fetch  u.address where u.userId = :userId")
+    UserEntity findUserAddressData(@Param("userId") String userId);
+
+    @Query("select u from UserEntity u join fetch  u.boards where u.userId = :userId")
+    UserEntity findUserBoards(@Param("userId") String userId);
+
 
 }

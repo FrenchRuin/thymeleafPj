@@ -20,41 +20,41 @@
         </button>
     </div>
     <hr>
-    <div class="mt-2">
-        <span class="visually-hidden" th:field="*{userDto.id}"></span>
-        <div class="mb-3 row">
-            <label for="userId" class="col-sm-2 col-form-label fw-bold">ID</label>
-            <div class="col-sm-10">
-                <span class="form-control-plaintext" id="userId" th:text="*{userDto.userId}"
-                      th:field="*{userDto.userId}"></span>
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label for="name" class="col-sm-2 col-form-label fw-bold">Name</label>
-            <div class="col-sm-10">
-                <span class="form-control-plaintext" id="name" th:text="*{userDto.name}"
-                      th:field="*{userDto.name}"></span>
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label for="number" class="col-sm-2 col-form-label fw-bold">Number</label>
-            <div class="col-sm-10">
-                <span class="form-control-plaintext" id="number" th:text="*{userDto.number}"></span>
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label for="birth" class="col-sm-2 col-form-label fw-bold">Birth</label>
-            <div class="col-sm-10">
-                <span class="form-control-plaintext" id="birth" th:text="*{userDto.birth}"></span>
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label for="email" class="col-sm-2 col-form-label fw-bold">Email</label>
-            <div class="col-sm-10">
-                <span class="form-control-plaintext" id="email" th:text="*{userDto.email}"></span>
-            </div>
-        </div>
+    <div class="mt-5">
         <form class="row g-3" method="post" th:action="@{/user/detailSave(userId = ${userDto.userId})}">
+            <input type="text" class="visually-hidden" th:field="*{userDto.id}">
+            <div class="mb-3 row">
+                <label for="userId" class="col-sm-2 col-form-label fw-bold">ID</label>
+                <div class="col-sm-10">
+                    <span class="form-control-plaintext" id="userId" th:text="${userDto.userId}"></span>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="name" class="col-sm-2 col-form-label fw-bold">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" th:field="*{userDto.name}">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="number" class="col-sm-2 col-form-label fw-bold">Number</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="number" th:field="*{userDto.number}">
+
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="birth" class="col-sm-2 col-form-label fw-bold">Birth</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="birth" th:field="*{userDto.birth}">
+
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="email" class="col-sm-2 col-form-label fw-bold">Email</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="email" th:field="*{userDto.email}">
+                </div>
+            </div>
 
             <div class="col-md-4">
                 <label for="country" class="form-label">Country</label>

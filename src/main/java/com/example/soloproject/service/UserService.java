@@ -36,8 +36,8 @@ public class UserService {
 
     public List<UserDto> findAllUser() {
 
-        List<UserEntity> userEntityList = userRepository.findAllData();
-
+//        List<UserEntity> userEntityList = userRepository.findAllData();
+        List<UserEntity> userEntityList = userRepository.findAll();
         /* List UserEntity  >> List UserDto */
         List<UserDto> userDtoList = userEntityList.stream()
                 .map(userEntity ->
@@ -55,13 +55,8 @@ public class UserService {
     }
 
 
-    public void saveUserAddress(String userId, UserDto userDto) {
-        UserDto user = findUser(userId);
-
-        user.setAddress(userDto.getAddress());
-
-        UserEntity userEntity = modelMapper.getMapper().map(user, UserEntity.class);
-
+    public void saveUserDetail(UserDto userDto) {
+        UserEntity userEntity = modelMapper.getMapper().map(userDto, UserEntity.class);
         userRepository.save(userEntity);
     }
 

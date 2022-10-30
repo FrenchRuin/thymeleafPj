@@ -1,9 +1,7 @@
 package com.example.soloproject.service;
 
 
-import com.example.soloproject.dto.AddressDto;
 import com.example.soloproject.dto.BoardDto;
-import com.example.soloproject.dto.UserDto;
 import com.example.soloproject.entity.BoardEntity;
 import com.example.soloproject.entity.UserEntity;
 import com.example.soloproject.repository.BoardRepository;
@@ -32,7 +30,7 @@ public class BoardService {
     ModelMapperUtils modelMapperUtils;
 
     public List<BoardDto> findBoard() {
-         List<BoardEntity> boardEntityList =  boardRepository.findAll();
+        List<BoardEntity> boardEntityList = boardRepository.findAll();
 
         List<BoardDto> boardList = boardEntityList.stream().map(
                 boardEntity -> modelMapperUtils.getMapper().map(boardEntity, BoardDto.class)
@@ -41,23 +39,9 @@ public class BoardService {
         return boardList;
     }
 
-    public Map<String,Object> addBoard(Map<String, Object> param) {
-        Map<String, Object> result = new HashMap<>();
+    public void addBoard(BoardDto boardDto) {
 
-        UserEntity userEntity = userRepository.findByUserId((String) param.get("userId"));
-        if (userEntity == null) {
-            result.put("msg", "fail");
-            return result;
-        }
-        BoardEntity boardEntity = new BoardEntity();
-        boardEntity.setContent((String) param.get("content"));
-        boardEntity.setTitle((String) param.get("title"));
-        boardEntity.setUser(userEntity);
-
-        boardRepository.save(boardEntity);
-
-        result.put("msg", "success");
-        return result;
+        log.info(boardDto.toString());
     }
 
 }

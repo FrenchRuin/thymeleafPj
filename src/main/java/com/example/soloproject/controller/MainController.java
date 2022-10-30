@@ -23,9 +23,5 @@ public class MainController {
         return "index";
     }
 
-    @RequestMapping(value = "/board", method = RequestMethod.GET)
-    public String board(Model model) {
-        model.addAttribute("boardList", boardService.findBoard());
-        return "board";
-    }
+
 }

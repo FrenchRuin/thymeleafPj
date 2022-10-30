@@ -15,66 +15,38 @@
 <th:block th:replace="fragment/header :: headerFragment"></th:block>
 <h2 class="text-center mt-2"> Board </h2>
 <div class="w-100 m-auto mt-5 d-flex justify-content-evenly position-relative">
-    <div class="">
-        <form class="w-100 row g-3 w-25">
+    <div class="h-100">
+        <form class="w-100 row g-3 w-25" method="post" th:action="@{/board/add}">
             <div class="col-12">
                 <label for="userId" class="form-label">ID</label>
                 <input type="text" class="form-control" id="userId" placeholder="ID">
             </div>
             <div class="col-12">
                 <label for="title" class="form-label">Title</label>
-                <input type="text" class="form-control" id="title" placeholder="Title">
+                <input type="text" class="form-control" id="title" placeholder="Title" th:field="*{boardDto.title}">
             </div>
             <div class="col-12">
                 <label for="content" class="form-label">Content</label>
-                <textarea class="form-control" id="content" rows="6"></textarea>
+                <textarea class="form-control" id="content" rows="6" th:field="*{boardDto.content}"></textarea>
             </div>
             <div class="col-12">
-                <button type="button" th:onclick="|javascript:addBoard()|" class="btn btn-primary">Apply</button>
+                <button type="submit" class="btn btn-primary">Apply</button>
             </div>
         </form>
     </div>
-    <table class="table w-50">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Title</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="list : ${boardList}">
-            <td>1</td>
-            <td><span th:text="${list.title}"></span></td>
-            <td><span th:text="${list.user.userId}"></span></td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="w-50 d-flex justify-content-evenly flex-wrap" id="card_container">
+        <div class="card mt-2" style="width: 18rem; height: auto;">
+            <div class="card-body">
+                <h5 class="card-title">Sample title</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Sample T</h6>
+                <p class="card-text">Sample Content</p>
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 
-<script th:inline="javascript">
-
-    function addBoard() {
-        let param = {
-            userId: $('#userId').val(),
-            title: $('#title').val(),
-            content: $('#content').val()
-        }
-        $.ajax({
-            type: "POST",
-            url: "/board/add",
-            async: true,
-            data: param,
-            success: function (res) {
-                if (res.msg == "fail") {
-                    alert("존재하지 않는 아이디입니다.");
-                } else {
-                    alert("등록되었습니다.");
-                }
-            },
-        })
-    }
-</script>
 
 </html>

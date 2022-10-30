@@ -6,6 +6,7 @@ import com.example.soloproject.repository.BoardRepository;
 import com.example.soloproject.repository.UserRepository;
 import com.example.soloproject.utils.ModelMapperUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,12 +35,12 @@ class BoardEntityTest {
     @Test
     void test_1() {
         // (all Data Success) //
-        List<UserEntity> userEntityList = userRepository.findUserAddressData();
+        UserEntity userEntityList = userRepository.findUserAddressData("toxic023");
 
-        List<UserDto> userDtoList = userEntityList.stream().map(userEntity ->
-                modelMapperUtils.getMapper().map(userEntity, UserDto.class)).collect(Collectors.toList());
+//        List<UserDto> userDtoList = userEntityList.stream().map(userEntity ->
+//                modelMapperUtils.getMapper().map(userEntity, UserDto.class)).collect(Collectors.toList());
 
-        log.info("userList : {}", userDtoList);
+//        log.info("userList : {}", userDtoList);
     }
 
     @Transactional
