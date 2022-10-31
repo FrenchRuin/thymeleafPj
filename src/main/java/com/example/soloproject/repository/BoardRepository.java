@@ -11,6 +11,10 @@ import java.util.List;
 public interface BoardRepository extends JpaRepository<BoardEntity, Long> {
 
     // Select from UserRepository needs.
-    @Query("select b from BoardEntity b join fetch b.user where b.id = b.user.id")
+    @Query("select b from BoardEntity b join b.user")
     List<BoardEntity> findUserBoard();
+
+
+    @Query("select distinct b from BoardEntity b join fetch b.user")
+    List<BoardEntity> findAllBoard();
 }

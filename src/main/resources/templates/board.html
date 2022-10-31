@@ -19,7 +19,7 @@
         <form class="w-100 row g-3 w-25" method="post" th:action="@{/board/add}">
             <div class="col-12">
                 <label for="userId" class="form-label">ID</label>
-                <input type="text" class="form-control" id="userId" placeholder="ID">
+                <input type="text" class="form-control" id="userId" placeholder="ID" th:field="*{userDto.userId}">
             </div>
             <div class="col-12">
                 <label for="title" class="form-label">Title</label>
@@ -31,21 +31,26 @@
             </div>
             <div class="col-12">
                 <button type="submit" class="btn btn-primary">Apply</button>
+                <a th:href="@{/board/deleteAll}" class="btn btn-dark">Delete All</a>
             </div>
         </form>
     </div>
     <div class="w-50 d-flex justify-content-evenly flex-wrap" id="card_container">
-        <div class="card mt-2" style="width: 18rem; height: auto;">
+        <div class="card mt-2" style="width: 18rem; height: auto;" th:each="board : ${boardList}">
             <div class="card-body">
-                <h5 class="card-title">Sample title</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Sample T</h6>
-                <p class="card-text">Sample Content</p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
+                <h5 class="card-title" th:text="*{board.title}">Sample title</h5>
+                <h6 class="card-subtitle mb-2 text-muted" th:text="*{board.user.userId}">Sample T</h6>
+                <p class="card-text"  th:text="*{board.content}">Sample Content</p>
             </div>
         </div>
     </div>
 </div>
+
+<script th:inline="javascript">
+
+    // var userId = $('#userId').val();
+
+</script>
 </body>
 
 

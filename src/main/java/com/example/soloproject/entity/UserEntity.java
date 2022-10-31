@@ -42,7 +42,7 @@ public class UserEntity  {
     private AddressEntity address;
 
 
-    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    @OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.LAZY)
     private List<BoardEntity> boards = new ArrayList<>();
 
     @CreatedDate

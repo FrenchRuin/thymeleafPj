@@ -2,6 +2,7 @@ package com.example.soloproject.service;
 
 
 import com.example.soloproject.dto.BoardDto;
+import com.example.soloproject.dto.UserDto;
 import com.example.soloproject.entity.BoardEntity;
 import com.example.soloproject.entity.UserEntity;
 import com.example.soloproject.repository.BoardRepository;
@@ -30,7 +31,7 @@ public class BoardService {
     ModelMapperUtils modelMapperUtils;
 
     public List<BoardDto> findBoard() {
-        List<BoardEntity> boardEntityList = boardRepository.findAll();
+        List<BoardEntity> boardEntityList = boardRepository.findAllBoard();
 
         List<BoardDto> boardList = boardEntityList.stream().map(
                 boardEntity -> modelMapperUtils.getMapper().map(boardEntity, BoardDto.class)
@@ -39,9 +40,22 @@ public class BoardService {
         return boardList;
     }
 
-    public void addBoard(BoardDto boardDto) {
+    public void addBoard(BoardDto boardDto, String userId) {
+//        log.info(boardDto.toString());
+//        log.info(userId);
+        UserEntity user = userRepository.findUserAddressData(userId);
+        if (user == null) {
+            return;
+        }
+        BoardEntity boardEntity = modelMapperUtils.getMapper().map(boardDto, BoardEntity.class);
 
-        log.info(boardDto.toString());
+        boardEntity.setUser(user);
+
+        boardRepository.save(boardEntity);
+    }
+
+    public void deleteAll() {
+        boardRepository.deleteAll();
     }
 
 }
