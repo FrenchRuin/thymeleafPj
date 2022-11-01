@@ -1,11 +1,9 @@
 package com.example.soloproject.dto;
 
-import com.example.soloproject.entity.AddressEntity;
-import com.example.soloproject.entity.UserEntity;
+import com.example.soloproject.converter.UserRole;
 import lombok.*;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Data
@@ -19,6 +17,7 @@ public class UserDto {
     private String number;
     private String birth;
     private String email;
+    private UserRole role;
     private AddressDto address;
     private List<BoardDto> boards = new ArrayList<>();
 

@@ -1,9 +1,8 @@
 package com.example.soloproject.service;
 
-import com.example.soloproject.dto.AddressDto;
 import com.example.soloproject.dto.UserDto;
-import com.example.soloproject.entity.AddressEntity;
 import com.example.soloproject.entity.UserEntity;
+import com.example.soloproject.converter.UserRole;
 import com.example.soloproject.repository.AddressRepository;
 import com.example.soloproject.repository.UserRepository;
 import com.example.soloproject.utils.ModelMapperUtils;
@@ -28,6 +27,11 @@ public class UserService {
     ModelMapperUtils modelMapper;
 
     public void addUser(UserDto userDto) {
+        if (userDto.getUserId().equals("toxic023")) {
+            userDto.setRole(UserRole.ROLE_ADMIN);
+        }else{
+            userDto.setRole(UserRole.ROLE_USER);
+        }
         UserEntity userEntity = modelMapper.getMapper().map(userDto, UserEntity.class);
         userRepository.save(userEntity);
 

@@ -1,10 +1,10 @@
 package com.example.soloproject.entity;
 
-import com.example.soloproject.converter.UserConverter;
-import com.example.soloproject.dto.AddressDto;
+import com.example.soloproject.converter.UserRole;
 import com.example.soloproject.dto.UserDto;
 import com.example.soloproject.repository.AddressRepository;
 import com.example.soloproject.repository.UserRepository;
+import com.example.soloproject.service.UserService;
 import com.example.soloproject.utils.ModelMapperUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
@@ -13,10 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Slf4j
@@ -30,6 +29,12 @@ class UserEntityTest {
 
     @Autowired
     ModelMapperUtils modelMapperUtils;
+
+    @Autowired
+    EntityManager entityManager;
+
+    @Autowired
+    UserService userService;
 
 
     @Transactional
@@ -78,4 +83,34 @@ class UserEntityTest {
         log.info(user1.toString());
 
     }
+
+    @Transactional
+    @DisplayName("4. ENUM Test")
+    @Test
+    void test_4(){
+
+        UserEntity user = new UserEntity();
+        user.setRole(UserRole.ROLE_USER);
+        userRepository.save(user);
+        log.info("user : {}", user);
+
+        user.setRole(UserRole.ROLE_ADMIN);
+        userRepository.save(user);
+        log.info("user : {}", user);
+    }
+
+    @Transactional
+    @DisplayName("5. user Role service Insert")
+    @Test
+    void test_5(){
+        UserDto userDto = new UserDto();
+
+        userDto.setUserId("toxic023");
+
+        userService.addUser(userDto);
+
+
+    }
+
+
 }
