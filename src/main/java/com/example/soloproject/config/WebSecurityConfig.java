@@ -1,5 +1,6 @@
 package com.example.soloproject.config;
 
+import com.mysql.cj.PreparedQuery;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,20 +16,29 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig  { // WebSecurityConfigurerAdapter is deprecated.
+public class WebSecurityConfig { // WebSecurityConfigurerAdapter is deprecated.
+
 
 
     // Configuring HttpSecurity
 //    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        return http.build();
-//    }
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        // set the login , error, fail situation in this Filter Chain
+        return http.csrf().disable().authorizeRequests()
+                .antMatchers("/login", "/error").permitAll()
+                .antMatchers("/board").hasRole("ADMIN")
+                .antMatchers("/user").authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .and().build();
+    }
 
     //Configuring WebSecurity
-//    @Bean
-//    public WebSecurityCustomizer webSecurityCustomizer() {
-//        return web -> web.ignoring().antMatchers();
-//    }
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return web -> web.ignoring().antMatchers("/resources/**");
+    }
 
     // Password Encode
     @Bean
