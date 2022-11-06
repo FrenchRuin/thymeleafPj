@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <script th:href="@{/js/bootstrap.min.js}"></script>
+    <title>Main page</title>
+</head>
+<body class="text-center">
+
+<main class="form-signin mt-5">
+    <form class="w-25 m-auto">
+        <img src="https://item.kakaocdn.net/do/166ebe6691fa2e36dd17d82e75ba9f7ef43ad912ad8dd55b04db6a64cddaf76d"
+             alt="Cute">
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+        <div class="form-floating">
+            <input type="text" class="form-control" id="floatingInput" placeholder="ID">
+            <label for="floatingInput">ID</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+        </div>
+
+        <div class="checkbox mt-2 mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember Information
+            </label>
+        </div>
+        <div class="w-100 d-flex justify-content-between">
+            <button class="w-50 btn btn-lg btn-primary" type="submit">Sign in</button>
+            <button class="w-50 btn btn-lg btn-dark" type="button" th:onclick="|location.href='/signUp'|">Sign Up</button>
+        </div>
+        <p class="mt-5 mb-3 text-muted">&copy Dev_Lee</p>
+    </form>
+</main>
+
+
+</body>
+
+<style>
+
+</style>
+</html>

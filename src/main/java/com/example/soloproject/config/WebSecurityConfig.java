@@ -1,6 +1,7 @@
 package com.example.soloproject.config;
 
 import com.mysql.cj.PreparedQuery;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -19,25 +20,30 @@ import org.springframework.security.web.SecurityFilterChain;
 public class WebSecurityConfig { // WebSecurityConfigurerAdapter is deprecated.
 
 
-
     // Configuring HttpSecurity
-//    @Bean
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         // set the login , error, fail situation in this Filter Chain
         return http.csrf().disable().authorizeRequests()
-                .antMatchers("/login", "/error").permitAll()
+                .antMatchers("/login").permitAll()
                 .antMatchers("/board").hasRole("ADMIN")
                 .antMatchers("/user").authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login")
-                .and().build();
+                .loginPage("/login/login")
+                .and()
+                .build();
     }
+
+
 
     //Configuring WebSecurity
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return web -> web.ignoring().antMatchers("/resources/**");
+        // resource web ignore setting.
+        return web -> web.ignoring().requestMatchers(
+                PathRequest.toStaticResources().atCommonLocations()
+        );
     }
 
     // Password Encode
@@ -62,5 +68,21 @@ public class WebSecurityConfig { // WebSecurityConfigurerAdapter is deprecated.
 
         return new InMemoryUserDetailsManager(user1, user2);
     }
+
+
+
+    /* Apply Security in Thymeleaf
+    *
+    * <div sec:authorize="isAuthenticated()">
+      This content is only shown to authenticated users.
+        </div>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+        This content is only shown to administrators.
+        </div>
+        <div sec:authorize="hasRole('ROLE_USER')">
+        This content is only shown to users.
+        </div>
+    * */
+
 
 }

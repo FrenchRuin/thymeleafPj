@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <script th:href="@{/js/bootstrap.min.js}"></script>
+    <title>Main page</title>
+</head>
+<body class="text-center">
+
+<main class="form-signin mt-5">
+    <form class="w-25 m-auto">
+        <h1 class="h3 mb-3 fw-normal">Sign Up Page</h1>
+
+        <div class="form-floating mt-1">
+            <input type="text" class="form-control" id="floatingInput" placeholder="ID">
+            <label for="floatingInput">ID</label>
+        </div>
+        <div class="form-floating mt-1">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary mt-5" type="submit">Sign Up</button>
+        <p class="mt-5 mb-3 text-muted">&copy Dev_Lee</p>
+    </form>
+</main>
+
+
+</body>
+
+<style>
+
+</style>
+</html>

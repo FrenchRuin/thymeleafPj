@@ -9,38 +9,25 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @EqualsAndHashCode
 @Entity
-@EntityListeners({AuditingEntityListener.class})
-@Table(name = "users")
-public class UserEntity  {
+@EntityListeners(AuditingEntityListener.class)
+@Table(name = "Account")
+public class AccountEntity {
 
+    @GeneratedValue
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String userId;
 
-    private String name;
+    private String password;
 
-    private String number;
-
-    private String birth;
-
-    private String email;
-
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "address")
-    private AddressEntity address;
-
-
-
-    @OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<BoardEntity> boards = new ArrayList<>();
+    @Column
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 
     @CreatedDate
     @Column(updatable = false)
