@@ -23,7 +23,9 @@ public class UserEntity  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String userId;
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "account")
+    private AccountEntity account;
 
     private String name;
 
@@ -36,8 +38,6 @@ public class UserEntity  {
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "address")
     private AddressEntity address;
-
-
 
     @OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.EAGER)
     private List<BoardEntity> boards = new ArrayList<>();

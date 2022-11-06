@@ -19,7 +19,7 @@
         <form class="w-100 row g-3 w-25" method="post" th:action="@{/board/add}">
             <div class="col-12">
                 <label for="userId" class="form-label">ID</label>
-                <input type="text" class="form-control" id="userId" placeholder="ID" th:field="*{userDto.userId}">
+                <input type="text" class="form-control" id="userId" placeholder="ID" th:field="*{userDto.account.userId}">
             </div>
             <div class="col-12">
                 <label for="title" class="form-label">Title</label>
@@ -39,7 +39,7 @@
         <div class="card mt-2" style="width: 18rem; height: auto;" th:each="board : ${boardList}">
             <div class="card-body">
                 <h5 class="card-title" th:text="*{board.title}">Sample title</h5>
-                <h6 class="card-subtitle mb-2 text-muted" th:text="*{board.user.userId}">Sample T</h6>
+                <h6 class="card-subtitle mb-2 text-muted" th:text="*{board.user.account.userId}">Sample T</h6>
                 <p class="card-text"  th:text="*{board.content}">Sample Content</p>
             </div>
         </div>

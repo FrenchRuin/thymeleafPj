@@ -33,7 +33,7 @@ public class BoardController {
 
     @RequestMapping(value = "/board/add", method = RequestMethod.POST)
     public String addBoard(UserDto userDto, BoardDto boardDto) {
-        boardService.addBoard(boardDto, userDto.getUserId());
+        boardService.addBoard(boardDto, userDto.getEmail());
         return "redirect:/board";
     }
 

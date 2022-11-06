@@ -10,16 +10,16 @@ import java.util.List;
 
 public interface UserRepository extends JpaRepository<UserEntity, String> {
 
-    UserEntity findByUserId(String userId);
+//    UserEntity findByUserId(String userId);
 
     // JPQL fetch join
     @Query("select distinct u from UserEntity u join fetch u.boards join fetch u.address")
     List<UserEntity> findAllData();
 
-    @Query("select u from UserEntity u join fetch  u.address where u.userId = :userId")
+    @Query("select u from UserEntity u join fetch  u.address where u.account.userId = :userId")
     UserEntity findUserAddressData(@Param("userId") String userId);
 
-    @Query("select u from UserEntity u join fetch  u.boards where u.userId = :userId")
+    @Query("select u from UserEntity u join fetch  u.boards where u.account.userId = :userId")
     UserEntity findUserBoards(@Param("userId") String userId);
 
 

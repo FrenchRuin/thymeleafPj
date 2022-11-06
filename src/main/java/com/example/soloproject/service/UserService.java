@@ -27,11 +27,11 @@ public class UserService {
     ModelMapperUtils modelMapper;
 
     public void addUser(UserDto userDto) {
-        if (userDto.getUserId().equals("toxic023")) {
-            userDto.setRole(UserRole.ROLE_ADMIN);
-        }else{
-            userDto.setRole(UserRole.ROLE_USER);
-        }
+//        if (userDto.getUserId().equals("toxic023")) {
+//            userDto.setRole(UserRole.ROLE_ADMIN);
+//        }else{
+//            userDto.setRole(UserRole.ROLE_USER);
+//        }
         UserEntity userEntity = modelMapper.getMapper().map(userDto, UserEntity.class);
         userRepository.save(userEntity);
 
@@ -52,7 +52,7 @@ public class UserService {
     }
 
     public UserDto findUser(String userId) {
-        UserEntity userEntity = userRepository.findByUserId(userId);
+        UserEntity userEntity = new UserEntity();
 
         UserDto userDto = modelMapper.getMapper().map(userEntity, UserDto.class);
         return userDto;

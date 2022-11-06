@@ -12,12 +12,11 @@ import java.util.List;
 public class UserDto {
 
     private Long id;
-    private String userId;
+    private AccountDto account;
     private String name;
     private String number;
     private String birth;
     private String email;
-    private UserRole role;
     private AddressDto address;
     private List<BoardDto> boards = new ArrayList<>();
 
