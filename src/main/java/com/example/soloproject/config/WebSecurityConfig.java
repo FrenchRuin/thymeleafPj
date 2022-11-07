@@ -26,11 +26,11 @@ public class WebSecurityConfig { // WebSecurityConfigurerAdapter is deprecated.
         // set the login , error, fail situation in this Filter Chain
         return http.csrf().disable().authorizeRequests()
                 .antMatchers("/login").permitAll()
-                .antMatchers("/board").hasRole("ADMIN")
-                .antMatchers("/user").authenticated()
+                .antMatchers("/signUp","/signUp/process").anonymous()
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login/login")
+                .loginPage("/login")
                 .and()
                 .build();
     }

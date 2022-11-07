@@ -41,8 +41,8 @@ public class MainController {
     }
 
     @RequestMapping(value = "/signUp/process", method = RequestMethod.POST)
-    public String signUpProcessing(@RequestParam("account") AccountDto accountDto) {
-        mainService.signUpProcessing(accountDto.getUserId(),accountDto.getPassword());
-        return "redirect:/login/signUp";
+    public String signUpProcess(AccountDto accountDto) {
+        mainService.signUpProcess(accountDto.getUserId(),accountDto.getPassword());
+        return "redirect:/login";
     }
 }
