@@ -1,6 +1,5 @@
 package com.example.soloproject.config;
 
-import com.mysql.cj.PreparedQuery;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,8 +34,6 @@ public class WebSecurityConfig { // WebSecurityConfigurerAdapter is deprecated.
                 .build();
     }
 
-
-
     //Configuring WebSecurity
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
@@ -50,23 +47,6 @@ public class WebSecurityConfig { // WebSecurityConfigurerAdapter is deprecated.
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    UserDetailsService userDetailsService() {
-        final PasswordEncoder pw = passwordEncoder();
-        UserDetails user1 = User.builder()
-                .username("user1")
-                .password(pw.encode("1234"))
-                .roles("USER")
-                .build();
-        UserDetails user2 = User.builder()
-                .username("user2")
-                .password(pw.encode("1234"))
-                .roles("ADMIN")
-                .build();
-
-        return new InMemoryUserDetailsManager(user1, user2);
     }
 
 
