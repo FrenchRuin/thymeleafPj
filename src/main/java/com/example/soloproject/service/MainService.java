@@ -39,10 +39,14 @@ public class MainService implements UserDetailsService  {
         log.info("Information : {}", accountEntity);
     }
 
+
+
     @Override
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
         AccountEntity account = accountRepository.findByUserId(userId);
         if (account == null) throw new UsernameNotFoundException("존재하지 않는 정보입니다.");
         return account;
     }
+
+
 }
