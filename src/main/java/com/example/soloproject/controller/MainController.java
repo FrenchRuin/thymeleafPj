@@ -30,7 +30,12 @@ public class MainController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login() {
+    public String login(Model model) {
+        return "login/login";
+    }
+
+    @RequestMapping(value = "/login/process", method = RequestMethod.POST)
+    public String loginProcess(Model model) {
         return "login/login";
     }
 
