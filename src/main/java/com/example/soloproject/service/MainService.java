@@ -1,8 +1,10 @@
 package com.example.soloproject.service;
 
+import com.example.soloproject.converter.AccountConverter;
 import com.example.soloproject.converter.UserRole;
 import com.example.soloproject.entity.AccountEntity;
 import com.example.soloproject.repository.AccountRepository;
+import com.example.soloproject.utils.ModelMapperUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,9 +22,13 @@ public class MainService implements UserDetailsService  {
     final
     PasswordEncoder passwordEncoder;
 
-    public MainService(AccountRepository accountRepository, PasswordEncoder passwordEncoder) {
+    final
+    ModelMapperUtils modelMapperUtils;
+
+    public MainService(AccountRepository accountRepository, PasswordEncoder passwordEncoder, ModelMapperUtils modelMapperUtils) {
         this.accountRepository = accountRepository;
         this.passwordEncoder = passwordEncoder;
+        this.modelMapperUtils = modelMapperUtils;
     }
 
     public void signUpProcess(String id,String password){
@@ -45,7 +51,7 @@ public class MainService implements UserDetailsService  {
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
         AccountEntity account = accountRepository.findByUserId(userId);
         if (account == null) throw new UsernameNotFoundException("존재하지 않는 정보입니다.");
-        return account;
+        return new AccountConverter(account);
     }
 
 
