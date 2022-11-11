@@ -21,10 +21,10 @@
 <div sec:authorize="isAuthenticated()">
     This content is only shown to authenticated users.
 </div>
-<div sec:authorize="hasRole('ROLE_ADMIN')">
+<div sec:authorize="hasAuthority('ROLE_ADMIN')">
     This content is only shown to administrators.
 </div>
-<div sec:authorize="hasRole('ROLE_USER')">
+<div sec:authorize="hasAuthority('ROLE_USER')">
     This content is only shown to users.
 </div>
 
