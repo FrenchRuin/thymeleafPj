@@ -40,26 +40,14 @@ public class MainController {
         return "loginForm";
     }
 
-//    @RequestMapping(value = "/login/process", method = RequestMethod.POST)
-//    public String loginProcess(AccountDto accountDto) {
-//
-//        log.info("{}", accountDto);
-//        mainService.loadUserByUsername(accountDto.getUserId());
-//        return "loginForm";
-//    }
-
     @RequestMapping(value = "/signUp", method = RequestMethod.GET)
     public String signUp(Model model) {
         model.addAttribute("AccountDto", new AccountDto());
         return "signUp";
     }
 
-    @RequestMapping(value = "/signUp/process", method = RequestMethod.POST)
-    public String signUpProcess(AccountDto accountDto) {
-        mainService.signUpProcess(accountDto.getUserId(),accountDto.getPassword());
-        return "loginForm";
-    }
 
+    // Authentication Information.
     @ResponseBody
     @GetMapping("/auth")
     public Authentication auth() {

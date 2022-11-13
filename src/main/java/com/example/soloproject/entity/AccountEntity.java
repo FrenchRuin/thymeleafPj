@@ -18,7 +18,7 @@ import java.util.Collection;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "Account")
-public class AccountEntity implements UserDetails {
+public class AccountEntity {
 
     @GeneratedValue
     @Id
@@ -40,33 +40,4 @@ public class AccountEntity implements UserDetails {
     @Column(updatable = false)
     private LocalDateTime updatedAt;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
-
-    @Override
-    public String getUsername() {
-        return null;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
-    }
 }

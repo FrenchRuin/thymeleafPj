@@ -1,10 +1,9 @@
 package com.example.soloproject.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.soloproject.token.UserManager;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,45 +16,48 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-@Configuration
 @EnableWebSecurity(debug = true)
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig { // WebSecurityConfigurerAdapter is deprecated.
 
 
-    // Resource file not apply security.
+    private final UserManager userManager;
+    private final CustomLoginFilter customLoginFilter;
+
+
+    public WebSecurityConfig(UserManager userManager, CustomLoginFilter customLoginFilter) {
+        this.userManager = userManager;
+        this.customLoginFilter = customLoginFilter;
+    }
+
 //    @Bean
-//    @Order(0)
-//    SecurityFilterChain resources(HttpSecurity http) throws Exception {
-//        http
-//                .requestMatchers((matchers) -> matchers.antMatchers("/templates/**"))
-//                .authorizeHttpRequests((authorize) -> authorize.anyRequest().permitAll())
-//                .requestCache().disable()
-//                .securityContext().disable()
-//                .sessionManagement().disable();
-//
-//        return http.build();
+//    AuthenticationManager authenticationManager(AuthenticationManagerBuilder authenticationManagerBuilder) {
+//        return (AuthenticationManager) authenticationManagerBuilder.authenticationProvider(userManager);
 //    }
 
     // Configuring HttpSecurity
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
         // set the login , error, fail situation in this Filter Chain
         return http
                 .authorizeRequests(
                         request -> {
-                            request.antMatchers("/","/auth").permitAll()
-                                    .anyRequest().hasAnyRole("USER","ADMIN");
+                            request.antMatchers("/", "/auth", "/login").permitAll()
+                                    .anyRequest().authenticated();
                         }
                 )
-                .formLogin(
-                        login -> {
-                            login.loginPage("/login")
-                                    .permitAll()
-                                    .defaultSuccessUrl("/", false)
-                                    .failureUrl("/login-error");
-                        }
-                ).build();
+//                .formLogin(
+//                        login -> {
+//                            login.loginPage("/login")
+//                                    .permitAll()
+//                                    .defaultSuccessUrl("/", false)
+//                                    .failureUrl("/login-error");
+//                        }
+//                )
+                .addFilterAt(customLoginFilter, UsernamePasswordAuthenticationFilter.class)
+                .logout(logout -> logout.logoutSuccessUrl("/"))
+                .build();
     }
 
 
@@ -89,23 +91,5 @@ public class WebSecurityConfig { // WebSecurityConfigurerAdapter is deprecated.
         return manager;
     }
 
-
-
-    // Inmemory UserDetail Service deprecated.
-//    @Bean
-//    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication()
-//                .withUser(
-//                        User.withDefaultPasswordEncoder()
-//                                .username("user1")
-//                                .password(passwordEncoder().encode("1111"))
-//                                .roles("USER")
-//                ).withUser(
-//                        User.withDefaultPasswordEncoder()
-//                                .username("admin")
-//                                .password(passwordEncoder().encode("2222"))
-//                                .roles("ADMIN")
-//                );
-//    }
 
 }
