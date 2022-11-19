@@ -1,11 +1,11 @@
 package com.example.soloproject.config;
 
 import com.example.soloproject.token.UserManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -22,22 +22,25 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class WebSecurityConfig { // WebSecurityConfigurerAdapter is deprecated.
 
 
-    private final UserManager userManager;
-    private final CustomLoginFilter customLoginFilter;
 
+    private AuthenticationManager authenticationManager;
 
-    public WebSecurityConfig(UserManager userManager, CustomLoginFilter customLoginFilter) {
+    final
+    UserManager userManager;
+
+    public WebSecurityConfig(UserManager userManager) {
         this.userManager = userManager;
-        this.customLoginFilter = customLoginFilter;
     }
 
-
-
+    @Bean
+    public void configure(AuthenticationManagerBuilder builder) {
+        builder.authenticationProvider(userManager);
+    }
 
     // Configuring HttpSecurity
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
+        CustomLoginFilter customLoginFilter = new CustomLoginFilter(authenticationManager);
         // set the login , error, fail situation in this Filter Chain
         return http
                 .authorizeRequests(
@@ -46,14 +49,14 @@ public class WebSecurityConfig { // WebSecurityConfigurerAdapter is deprecated.
                                     .anyRequest().authenticated();
                         }
                 )
-                .formLogin(
-                        login -> {
-                            login.loginPage("/login")
-                                    .permitAll()
-                                    .defaultSuccessUrl("/", false)
-                                    .failureUrl("/login-error");
-                        }
-                )
+//                .formLogin(
+//                        login -> {
+//                            login.loginPage("/login")
+//                                    .permitAll()
+//                                    .defaultSuccessUrl("/", false)
+//                                    .failureUrl("/login-error");
+//                        }
+//                )
                 .addFilterAt(customLoginFilter, UsernamePasswordAuthenticationFilter.class)
                 .logout(logout -> logout.logoutSuccessUrl("/"))
                 .build();
