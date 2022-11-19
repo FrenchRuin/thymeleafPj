@@ -31,19 +31,19 @@ public class MainController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
-        return "loginForm";
+        return "login/loginForm";
     }
 
     @RequestMapping(value = "/login-error", method = RequestMethod.GET)
     public String loginError(Model model){
         model.addAttribute("loginError", true);
-        return "loginForm";
+        return "login/loginForm";
     }
 
     @RequestMapping(value = "/signUp", method = RequestMethod.GET)
     public String signUp(Model model) {
         model.addAttribute("AccountDto", new AccountDto());
-        return "signUp";
+        return "login/signUp";
     }
 
 

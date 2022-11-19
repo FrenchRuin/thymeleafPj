@@ -23,7 +23,7 @@ public class BoardController {
         model.addAttribute("boardList", boardService.findBoard());
         model.addAttribute("boardDto", new BoardDto());
         model.addAttribute("userDto", new UserDto());
-        return "board";
+        return "board/board";
     }
 
     @RequestMapping(value = "/board/add", method = RequestMethod.POST)

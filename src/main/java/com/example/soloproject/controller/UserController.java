@@ -31,7 +31,7 @@ public class UserController {
     public String user(Model model) {
         model.addAttribute("userData", userService.findAllUser());
         model.addAttribute("userDto", new UserDto());
-        return "user";
+        return "user/user";
     }
 
     @RequestMapping(value = "/user/add", method = RequestMethod.POST)
@@ -49,7 +49,7 @@ public class UserController {
     @RequestMapping(value = "/user/detail", method = RequestMethod.GET)
     public String userDetail(@RequestParam("userId") String userId,UserDto userDto, Model model) {
         model.addAttribute("userDto", userService.findUser(userId));
-        return "userDetail";
+        return "user/userDetail";
     }
 
     @RequestMapping(value = "/user/detailSave", method = RequestMethod.POST)

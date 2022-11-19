@@ -31,8 +31,8 @@ spring:
         default_batch_fetch_size: 1000
     defer-datasource-initialization: true
 
-  security:
-    user:
-      name: user
-      password: 1234
-      roles: USER
+#  security:
+#    user:
+#      name: user
+#      password: 1234
+#      roles: USER

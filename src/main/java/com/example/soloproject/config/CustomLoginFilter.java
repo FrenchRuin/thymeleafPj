@@ -1,5 +1,6 @@
 package com.example.soloproject.config;
 
+import com.example.soloproject.token.UserAuthenticationToken;
 import com.example.soloproject.token.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -31,9 +32,10 @@ public class CustomLoginFilter extends UsernamePasswordAuthenticationFilter {
         username = (username != null) ? username.trim() : "";
         String password = obtainPassword(request);
         password = (password != null) ? password : "";
-        UsernamePasswordAuthenticationToken authRequest = UsernamePasswordAuthenticationToken.unauthenticated(username,
-                password);
-        setDetails(request, authRequest);
-        return this.getAuthenticationManager().authenticate(authRequest);
+
+        UserAuthenticationToken token = UserAuthenticationToken.builder()
+                .credentials(username)
+                .build();
+        return this.getAuthenticationManager().authenticate(token);
     }
 }

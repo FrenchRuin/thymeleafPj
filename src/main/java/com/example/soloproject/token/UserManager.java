@@ -1,8 +1,8 @@
 package com.example.soloproject.token;
 
 import com.example.soloproject.dto.UserAccountDto;
-import com.example.soloproject.dto.UserDto;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 @Component
-public class UserManager implements AuthenticationProvider, InitializingBean {
+public class UserManager implements AuthenticationProvider, InitializingBean, AuthenticationManager {
 
     private HashMap<String, UserAccountDto> userDb = new HashMap<>();
 
