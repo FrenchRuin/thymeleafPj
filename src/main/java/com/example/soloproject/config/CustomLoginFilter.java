@@ -10,6 +10,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
 
@@ -38,4 +39,9 @@ public class CustomLoginFilter extends UsernamePasswordAuthenticationFilter {
                 .build();
         return this.getAuthenticationManager().authenticate(token);
     }
+
+//    @Override
+//    public void setAuthenticationSuccessHandler(AuthenticationSuccessHandler successHandler) {
+//        successHandler.
+//    }
 }

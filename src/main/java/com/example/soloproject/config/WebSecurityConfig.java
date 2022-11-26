@@ -16,17 +16,12 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig { // WebSecurityConfigurerAdapter is deprecated.
 
-
-
-
-
     final
     UserManager userManager;
 
     public WebSecurityConfig(UserManager userManager) {
         this.userManager = userManager;
     }
-
 
 
     // Configuring HttpSecurity
@@ -37,18 +32,16 @@ public class WebSecurityConfig { // WebSecurityConfigurerAdapter is deprecated.
         return http
                 .authorizeRequests(
                         request -> {
-                            request.antMatchers("/", "/auth", "/login").permitAll()
+                            request.antMatchers("/", "/auth").permitAll()
                                     .anyRequest().authenticated();
                         }
                 )
-                .formLogin(
-                        login -> {
-                            login.loginPage("/login")
-                                    .permitAll()
-                                    .defaultSuccessUrl("/", false)
-                                    .failureUrl("/login-error");
-                        }
-                )
+                .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .successHandler(new CustomSuccessHandler())
+                .failureHandler(new CustomFailureHandler())
+                .and()
                 .authenticationManager(new UserManager())
                 .addFilterAt(customLoginFilter, UsernamePasswordAuthenticationFilter.class)
                 .logout(logout -> logout.logoutSuccessUrl("/"))
