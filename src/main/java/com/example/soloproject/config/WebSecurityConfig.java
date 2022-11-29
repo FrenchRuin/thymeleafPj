@@ -49,7 +49,6 @@ public class WebSecurityConfig { // WebSecurityConfigurerAdapter is deprecated.
     }
 
     //Configuring WebSecurity
-
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         // resource web ignore setting.
@@ -57,26 +56,12 @@ public class WebSecurityConfig { // WebSecurityConfigurerAdapter is deprecated.
                 PathRequest.toStaticResources().atCommonLocations()
         );
     }
-
     // Password Encode
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    // Inmemory user
-//    @Bean
-//    public UserDetailsService userDetailsService(BCryptPasswordEncoder bCryptPasswordEncoder) {
-//        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-//        manager.createUser(User.withUsername("user")
-//                .password(bCryptPasswordEncoder.encode("1111"))
-//                .roles("USER").build());
-//        manager.createUser(User.withUsername("admin")
-//                .password(bCryptPasswordEncoder.encode("2222"))
-//                .roles("ADMIN").build());
-//
-//        return manager;
-//    }
 
 
 }

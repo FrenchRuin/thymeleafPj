@@ -24,28 +24,26 @@ public class MainController {
         this.mainService = mainService;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @GetMapping("/")
     public String home() {
         return "index";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @GetMapping("/login")
     public String login() {
         return "login/loginForm";
     }
 
-    @RequestMapping(value = "/login-error", method = RequestMethod.GET)
+    @GetMapping("/login-error")
     public String loginError(Model model){
         model.addAttribute("loginError", true);
         return "login/loginForm";
     }
-
-    @RequestMapping(value = "/signUp", method = RequestMethod.GET)
+    @GetMapping("/signUp")
     public String signUp(Model model) {
         model.addAttribute("AccountDto", new AccountDto());
         return "login/signUp";
     }
-
 
     // Authentication Information.
     @ResponseBody
