@@ -23,10 +23,6 @@ public class UserEntity  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "account")
-    private AccountEntity account;
-
     private String name;
 
     private String number;

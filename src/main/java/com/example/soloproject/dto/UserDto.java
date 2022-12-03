@@ -15,7 +15,6 @@ import java.util.Set;
 public class UserDto {
 
     private Long id;
-    private AccountDto account;
     private String name;
     private String number;
     private String birth;
