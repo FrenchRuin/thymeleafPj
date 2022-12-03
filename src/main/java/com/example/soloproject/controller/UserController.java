@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Slf4j
+@RequestMapping("/user/*")
 public class UserController {
 
     final
@@ -25,27 +26,26 @@ public class UserController {
         this.userService = userService;
     }
 
-
-    @GetMapping("/user")
+    @GetMapping("/main")
     public String user(Model model) {
         model.addAttribute("userData", userService.findAllUser());
         model.addAttribute("userDto", new UserDto());
         return "user/user";
     }
 
-    @PostMapping("/user/add")
+    @PostMapping("/add")
     public String addUser(UserDto userDto) {
         userService.addUser(userDto);
         return "redirect:/user";
     }
 
-    @GetMapping("/user/deleteAll")
+    @GetMapping("/deleteAll")
     public String deleteAllUser() {
         userService.deleteAllUser();
         return "redirect:/user";
     }
 
-    @GetMapping("/user/detail")
+    @GetMapping("/detail")
     public String userDetail(@RequestParam("userId") String userId,UserDto userDto, Model model) {
         model.addAttribute("userDto", userService.findUser(userId));
         return "user/userDetail";
